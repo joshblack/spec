@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Locale component should render 1`] = `
+<h1>
+  Hi there
+</h1>
+`;

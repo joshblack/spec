@@ -1,0 +1,70 @@
+{
+  "name": "spec",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.0.6",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-to-json": "^3.3.0",
+    "flow-bin": "^0.63.1",
+    "husky": "^0.14.3",
+    "jest": "^22.0.6",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.10.2",
+    "react": "^16.2.0"
+  },
+  "config": {
+    "validate-commit-msg": {
+      "helpMessage": "\nNeed help? We're currently using a commit convention that is outlined here:\nhttps://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md\n\nWe use this convention in order to make contributions to the project clear and predictable.\n\nCurrently, we support the following types: feat, fix, docs, style, refactor, perf, test, chore, revert.\n\nYou can use these types in your commit message in the following fashion:\n\n$ git commit -m \"<type>(<scope>): some commit message here\""
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "prettier",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "jsxBracketSameLine": true,
+    "trailingComma": "es5",
+    "printWidth": 80
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "packages/**/*.js"
+    ],
+    "setupFiles": [],
+    "testMatch": [
+      "<rootDir>/**/__tests__/**/*.js?(x)"
+    ],
+    "testURL": "http://localhost",
+    "transform": {
+      ".+\\.(js|jsx)$": "<rootDir>/packages/ocelot-client/config/jest/jsTransform.js",
+      ".+\\.css$": "<rootDir>/packages/ocelot-client/config/jest/cssTransform.js",
+      "(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/packages/ocelot-client/config/jest/fileTransform.js"
+    },
+    "testPathIgnorePatterns": [
+      "/lib/",
+      "/build/",
+      "/.cache/"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  }
+}
