@@ -53,7 +53,8 @@ describe('security middleware', () => {
   it('should set the CSP policy if provided', () => {
     const contentSecurityPolicy = { foo: 'bar' };
     middleware({ contentSecurityPolicy })(mockServer);
-    expect(mockHelmet.contentSecurityPolicy)
-      .toHaveBeenCalledWith(contentSecurityPolicy);
+    expect(mockHelmet.contentSecurityPolicy).toHaveBeenCalledWith(
+      contentSecurityPolicy
+    );
   });
 });

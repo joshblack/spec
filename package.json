@@ -6,7 +6,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "ci-check": "yarn prettier:diff",
+    "ci-check": "yarn prettier:diff && yarn test --runInBand",
     "commitmsg": "validate-commit-msg",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "precommit": "lint-staged",

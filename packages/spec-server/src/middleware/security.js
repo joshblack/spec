@@ -8,9 +8,9 @@ const sts = require('strict-transport-security');
 
 import type { Server } from '../types';
 
-module.exports = ({
-  contentSecurityPolicy,
-} = {}) => (server: Server): Server => {
+module.exports = ({ contentSecurityPolicy } = {}) => (
+  server: Server
+): Server => {
   // Protect against HTTP Parameter Pollution attacks
   server.use(hpp());
 
