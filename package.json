@@ -27,7 +27,8 @@
     "jest": "^22.0.6",
     "lint-staged": "^6.0.0",
     "prettier": "^1.10.2",
-    "react": "^16.2.0"
+    "react": "^16.2.0",
+    "validate-commit-msg": "^2.14.0"
   },
   "config": {
     "validate-commit-msg": {
@@ -54,11 +55,10 @@
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.js?(x)"
     ],
-    "testURL": "http://localhost",
     "transform": {
-      ".+\\.(js|jsx)$": "<rootDir>/packages/ocelot-client/config/jest/jsTransform.js",
-      ".+\\.css$": "<rootDir>/packages/ocelot-client/config/jest/cssTransform.js",
-      "(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/packages/ocelot-client/config/jest/fileTransform.js"
+      ".+\\.(js|jsx)$": "<rootDir>/packages/spec-client/config/jest/jsTransform.js",
+      ".+\\.css$": "<rootDir>/packages/spec-client/config/jest/cssTransform.js",
+      "(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/packages/spec-client/config/jest/fileTransform.js"
     },
     "testPathIgnorePatterns": [
       "/lib/",
