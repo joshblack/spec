@@ -5,6 +5,15 @@
     "packages/*"
   ],
   "license": "MIT",
+  "scripts": {
+    "ci-check": "yarn prettier:diff",
+    "commitmsg": "validate-commit-msg",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "precommit": "lint-staged",
+    "prettier": "prettier --write \"**/*.{scss,css,js}\"",
+    "prettier:diff": "prettier --list-different \"**/*.{scss,css,js}\"",
+    "test": "jest"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-jest": "^22.0.6",
@@ -32,10 +41,10 @@
     ]
   },
   "prettier": {
-    "singleQuote": true,
     "jsxBracketSameLine": true,
-    "trailingComma": "es5",
-    "printWidth": 80
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "jest": {
     "collectCoverageFrom": [
