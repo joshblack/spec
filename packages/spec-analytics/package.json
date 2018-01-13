@@ -1,8 +1,0 @@
-{
-  "name": "@spec/analytics",
-  "private": true,
-  "version": "0.1.0",
-  "description": "Analytics-based helpers for projects using Spec.",
-  "scripts": {},
-  "author": "Josh Black <joshblack@us.ibm.com>"
-}

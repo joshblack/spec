@@ -1,33 +1,27 @@
 # Getting Started
 
-> Up & Running with Ocelot.
+> Up & Running with spec.
 
 ## Install
 
-Make sure to follow [Whitewater's instructions](https://github.ibm.com/Whitewater/npm-enterprise) for npm Enterprise and have an alias for the `@ocelot` scope that is mapped to the npm Enterprise registry.
-
-For reference, this should look like `@ocelot:registry=https://npm-registry.whitewater.ibm.com/` and is located in your `~/.npmrc` file.
-
-Afterwards, you can run the following to initialize a project with Ocelot:
-
 ```bash
 npm init
-npm install @ocelot/ocelot --save --registry=https://npm-registry.whitewater.ibm.com/
+npm install @spec/spec-cli --save
 
 # Or with yarn
 yarn init
-yarn add @ocelot/ocelot --registry=https://npm-registry.whitewater.ibm.com/
+yarn add @spec/spec-cli
 ```
 
-Once Ocelot is installed, you can use the `init` command to generate your
+Once spec is installed, you can use the `init` command to generate your
 project's structure. `init` supports a template flag `-t, --template` that
 will allow you to specify a template that's most appropriate for your project.
 
-In our case, we'll use the `watson` template by running:
+In our case, we'll use the `product` template by running:
 
 ```bash
 # npm bin expands to the path to our local npm .bin folder
-$(npm bin)/ocelot init --template watson
+$(npm bin)/spec init --template product
 ```
 
 When the command finishes running, you should have a project scaffold with a
@@ -58,14 +52,14 @@ scripts, namely:
 
 ```bash
 # Build your project's static assets
-ocelot build
+spec-cli build
 
 # Run a local server for development
-ocelot dev
+spec-cli dev
 
 # Run the Jest Test-Runner
-ocelot test
+spec-cli test
 
-# Start a production server, make sure to run ocelot build first!
-ocelot start
+# Start a production server, make sure to run spec build first!
+spec-cli start
 ```

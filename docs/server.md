@@ -1,11 +1,10 @@
-# `@ocelot/server`
+# `@spec/server`
 
-> Common helpers for running, building, and maintaining Node.js-based apps for
-> IBM Watson and Cloud Platform.
+> Common helpers for running, building, and maintaining Node.js-based apps.
 
 ## Middleware
 
-Middleware in `@ocelot/server` acts as a function that takes in the current
+Middleware in `@spec/server` acts as a function that takes in the current
 server context, modifies it as needed, and then returns it back for the next
 middleware to use. For example:
 
@@ -20,7 +19,7 @@ module.exports = (server) => {
 Middleware can return promises as well, if needed, as long as they ultimately
 return a valid server instance.
 
-`@ocelot/server` exposes a variety of common middleware for you to use in your
+`@spec/server` exposes a variety of common middleware for you to use in your
 application, and are commonly used with the `applyMiddleware` tool.
 
 ### `all`
@@ -68,7 +67,7 @@ should make sure to call it first with the options you need, for example:
 
 ```js
 const middleware = [
-  require('@cnc/server/lib/middleware/html')({
+  require('@spec/server/middleware/html')({
     getTitle: (req) => 'Some Title',
   }),
 ];

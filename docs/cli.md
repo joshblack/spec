@@ -1,15 +1,15 @@
-# Ocelot CLI
+# `spec-cli`
 
 ## Commands
 
-### `ocelot build`
+### `spec-cli build`
 
-### `ocelot dev`
+### `spec-cli dev`
 
-### `ocelot dev:server`
+### `spec-cli dev:server`
 
-### `ocelot init`
+### `spec-cli init`
 
-### `ocelot start`
+### `spec-cli start`
 
-### `ocelot test`
+### `spec-cli test`

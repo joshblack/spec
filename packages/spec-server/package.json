@@ -1,19 +1,20 @@
 {
   "name": "@spec/server",
   "version": "0.1.0",
-  "description": "Opinionated Node.js server utilities for UI-focused services.",
   "author": "Josh Black <joshblack@us.ibm.com>",
   "license": "MIT",
   "files": [
-    "lib",
+    "middleware",
+    "tools",
+    "types.js",
     "ssl"
   ],
   "scripts": {
-    "build": "yarn clean && yarn types:remove && yarn types:publish",
-    "clean": "rimraf lib",
+    "build": "yarn clean && yarn types:remove && yarn types:publish && yarn clean",
+    "clean": "rimraf middleware tools types.js types.js.flow",
     "prepublish": "yarn build",
-    "types:publish": "flow-copy-source -i \"**/{__tests__,__mocks__}/**/*.js\" src lib",
-    "types:remove": "flow-remove-types -q -i \"__tests__\" -i \"__mocks__\" --out-dir lib src",
+    "types:publish": "flow-copy-source -i \"**/{__tests__,__mocks__}/**/*.js\" src .",
+    "types:remove": "flow-remove-types -q -i \"__tests__\" -i \"__mocks__\" --out-dir . src",
     "watch": "watch \"yarn build\" src"
   },
   "dependencies": {

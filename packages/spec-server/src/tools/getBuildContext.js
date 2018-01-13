@@ -4,7 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const webpackConfig = require('@ocelot/client/config/webpack.config.dev');
+const webpackConfig = require('@spec/client/config/webpack.config.dev');
 const errorf = require('./errorf');
 
 import type { ErrorMessage } from '../types';

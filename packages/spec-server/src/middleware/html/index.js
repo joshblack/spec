@@ -16,10 +16,9 @@ type HtmlMiddlewareConfig = {|
 |};
 
 module.exports = (
-  {
-    // TODO: Analytics Key
-    getTitle = () => 'Ocelot App',
-  }: // TODO: og:* properties
+  { getTitle = () => 'Spec App' }: HtmlMiddlewareConfig = {}
+  // TODO: Analytics Key
+  // TODO: og:* properties
   // getOpenGraphInfo = (req, title) => ({
   // title,
   // site_name: '',
@@ -27,7 +26,6 @@ module.exports = (
   // description: '',
   // url: req.url,
   // }),
-  HtmlMiddlewareConfig = {}
 ) => (server: Server, context: Context): Promise<Server> => {
   const { build } = context;
   const { assets, manifest } = build;
