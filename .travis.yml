@@ -17,3 +17,6 @@ before_install:
 
 script:
   - yarn ci-check
+
+after_success:
+  - yarn lerna exec "semantic-release -e semantic-release-monorepo"

@@ -18,7 +18,7 @@
     "clean": "rimraf middleware tools types.js types.js.flow",
     "prepublish": "yarn build",
     "types:publish": "flow-copy-source -i \"**/{__tests__,__mocks__}/**/*.js\" src .",
-    "types:remove": "flow-remove-types -q -i \"__tests__\" -i \"__mocks__\" --out-dir . src",
+    "types:remove": "flow-remove-types -q -i \"(__tests__|__mocks__)\" --out-dir . src",
     "watch": "watch \"yarn build\" src"
   },
   "dependencies": {
