@@ -3,6 +3,9 @@ build
 lib
 dist
 
+# Config files
+.npmrc
+
 # Logs
 logs
 *.log

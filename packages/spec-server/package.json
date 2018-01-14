@@ -1,14 +1,18 @@
 {
   "name": "@spec/server",
-  "version": "0.1.0",
-  "author": "Josh Black <joshblack@us.ibm.com>",
+  "version": "1.0.0",
   "license": "MIT",
+  "author": "Josh Black <joshblack@us.ibm.com>",
   "files": [
     "middleware",
     "tools",
     "types.js",
     "ssl"
   ],
+  "repository": "https://github.com/joshblack/spec/tree/master/packages/spec-server",
+  "bugs": {
+    "url": "https://github.com/joshblack/spec/issues"
+  },
   "scripts": {
     "build": "yarn clean && yarn types:remove && yarn types:publish",
     "clean": "rimraf middleware tools types.js types.js.flow",

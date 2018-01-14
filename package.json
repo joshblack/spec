@@ -9,11 +9,13 @@
     "ci-check": "yarn prettier:diff && yarn test --runInBand",
     "commitmsg": "validate-commit-msg",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "lerna": "lerna",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"**/*.{scss,css,js}\"",
     "prettier:diff": "prettier --list-different \"**/*.{scss,css,js}\"",
     "test": "jest"
   },
+  "release": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-jest": "^22.0.6",
@@ -25,6 +27,7 @@
     "flow-bin": "^0.63.1",
     "husky": "^0.14.3",
     "jest": "^22.0.6",
+    "lerna": "^2.7.0",
     "lint-staged": "^6.0.0",
     "prettier": "^1.10.2",
     "react": "^16.2.0",
