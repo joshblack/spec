@@ -1,9 +1,9 @@
 {
-  "lerna": "2.6.0",
+  "lerna": "2.7.0",
   "packages": [
     "packages/*"
   ],
-  "version": "1.1.6",
+  "version": "1.1.4",
   "npmClient": true,
   "useWorkspaces": true
 }
