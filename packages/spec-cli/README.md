@@ -61,6 +61,6 @@ spec-cli dev
 # Run the Jest Test-Runner
 spec-cli test
 
-# Start a production server, make sure to run ocelot build first!
+# Start a production server, make sure to run spec-cli build first!
 spec-cli start
 ```
