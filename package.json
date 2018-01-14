@@ -6,7 +6,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "ci-check": "yarn prettier:diff && yarn test --runInBand",
+    "ci-check": "yarn prettier:diff && yarn test --runInBand --no-cache",
     "commitmsg": "validate-commit-msg",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lerna": "lerna",
@@ -52,11 +52,11 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "packages/**/*.js"
+      "<rootDir>/packages/**/*.js"
     ],
     "setupFiles": [],
     "testMatch": [
-      "<rootDir>/**/__tests__/**/*.js?(x)"
+      "<rootDir>/**/__tests__/**/*.js"
     ],
     "transform": {
       ".+\\.(js|jsx)$": "<rootDir>/packages/spec-config/jest/jsTransform.js",
