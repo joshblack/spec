@@ -1,9 +1,14 @@
 {
   "name": "@spec/cli",
   "description": "Setup and runtime tools for React-based projects.",
-  "version": "1.1.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Josh Black <joshblack@us.ibm.com>",
+  "files": [
+    "bin",
+    "config",
+    "scripts"
+  ],
   "bin": {
     "spec-cli": "./bin/spec-cli.js"
   },
