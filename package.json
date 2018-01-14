@@ -1,5 +1,6 @@
 {
   "name": "spec",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
