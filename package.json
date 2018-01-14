@@ -6,7 +6,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "ci-check": "yarn prettier:diff && yarn test --runInBand --no-cache",
+    "ci-check": "yarn prettier:diff && yarn test --runInBand --no-watchman",
     "commitmsg": "validate-commit-msg",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lerna": "lerna",
@@ -56,18 +56,13 @@
     ],
     "setupFiles": [],
     "testMatch": [
-      "<rootDir>/**/__tests__/**/*.js"
+      "<rootDir>/**/__tests__/**/*.js?(x)"
     ],
     "transform": {
       ".+\\.(js|jsx)$": "<rootDir>/packages/spec-config/jest/jsTransform.js",
       ".+\\.css$": "<rootDir>/packages/spec-config/jest/cssTransform.js",
       "(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/packages/spec-config/jest/fileTransform.js"
     },
-    "testPathIgnorePatterns": [
-      "/lib/",
-      "/build/",
-      "/.cache/"
-    ],
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ],
