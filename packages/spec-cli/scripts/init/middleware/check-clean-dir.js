@@ -3,7 +3,12 @@
 const fs = require('fs-extra');
 
 module.exports = (program, next) => {
-  const originalFileWhitelist = new Set(['node_modules', 'package.json']);
+  const originalFileWhitelist = new Set([
+    'node_modules',
+    'package.json',
+    'yarn.lock',
+    'package-lock.json',
+  ]);
   const filesInDirectory = fs
     .readdirSync(program.cwd)
     .filter(file => !originalFileWhitelist.has(file));
