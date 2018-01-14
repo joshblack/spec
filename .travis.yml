@@ -19,4 +19,4 @@ script:
   - yarn ci-check
 
 after_success:
-  - yarn lerna exec "semantic-release -e semantic-release-monorepo"
+  - yarn lerna exec --concurrency 1 "semantic-release -e semantic-release-monorepo"
