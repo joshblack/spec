@@ -5,6 +5,9 @@
   "license": "MIT",
   "author": "Josh Black <joshblack@us.ibm.com>",
   "repository": "https://github.com/joshblack/spec/tree/master/packages/babel-preset-spec",
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/joshblack/spec/issues"
   },

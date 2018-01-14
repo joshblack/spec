@@ -13,6 +13,9 @@
   "bugs": {
     "url": "https://github.com/joshblack/spec/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "yarn clean && yarn types:remove && yarn types:publish",
     "clean": "rimraf middleware tools types.js types.js.flow",

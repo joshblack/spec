@@ -11,6 +11,9 @@
   "bugs": {
     "url": "https://github.com/joshblack/spec/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {},
   "dependencies": {
     "@spec/babel-preset-spec": "1.0.0",
