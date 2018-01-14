@@ -1,15 +1,15 @@
-# `ocelot-app`
+# `spec-cli`
 
-This project was bootstrapped using `ocelot`.
+This project was bootstrapped using `spec-cli`.
 
 ## Usage
 
 Available scripts:
 
-- `ocelot build`
-- `ocelot dev`
-- `ocelot start`
-- `ocelot test`
+- `spec-cli build`
+- `spec-cli dev`
+- `spec-cli start`
+- `spec-cli test`
 
 ## Folder Structure
 

@@ -5,8 +5,8 @@ process.env.NODE_ENV = 'production';
 const fs = require('fs-extra');
 const chalk = require('chalk');
 const webpack = require('webpack');
-const paths = require('../config/paths');
-const config = require('../config/webpack.config.prod');
+const paths = require('@spec/config/paths');
+const config = require('@spec/config/webpack/webpack.config.prod.js');
 
 function printErrors(summary, errors) {
   console.log(chalk.red(summary));

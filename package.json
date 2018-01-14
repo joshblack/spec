@@ -56,9 +56,9 @@
       "<rootDir>/**/__tests__/**/*.js?(x)"
     ],
     "transform": {
-      ".+\\.(js|jsx)$": "<rootDir>/packages/spec-client/config/jest/jsTransform.js",
-      ".+\\.css$": "<rootDir>/packages/spec-client/config/jest/cssTransform.js",
-      "(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/packages/spec-client/config/jest/fileTransform.js"
+      ".+\\.(js|jsx)$": "<rootDir>/packages/spec-config/jest/jsTransform.js",
+      ".+\\.css$": "<rootDir>/packages/spec-config/jest/cssTransform.js",
+      "(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/packages/spec-config/jest/fileTransform.js"
     },
     "testPathIgnorePatterns": [
       "/lib/",

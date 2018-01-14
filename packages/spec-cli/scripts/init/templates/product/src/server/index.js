@@ -1,6 +1,6 @@
 'use strict';
 
-const register = require('@ocelot/server/lib/tools/register');
+const register = require('@spec/server/tools/register');
 const setupServer = require('./server');
 
 register(setupServer);

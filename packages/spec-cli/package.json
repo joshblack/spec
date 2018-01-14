@@ -7,8 +7,13 @@
     "spec-cli": "./bin/spec-cli.js"
   },
   "author": "Josh Black <joshblack@us.ibm.com>",
+  "bugs": {
+    "url": "https://github.com/joshblack/spec/issues"
+  },
   "scripts": {},
   "dependencies": {
+    "@spec/babel-preset-spec": "1.0.0",
+    "@spec/config": "1.0.0",
     "babel-core": "6.26.0",
     "babel-jest": "22.0.6",
     "babel-loader": "7.1.2",

@@ -10,7 +10,7 @@
     "ssl"
   ],
   "scripts": {
-    "build": "yarn clean && yarn types:remove && yarn types:publish && yarn clean",
+    "build": "yarn clean && yarn types:remove && yarn types:publish",
     "clean": "rimraf middleware tools types.js types.js.flow",
     "prepublish": "yarn build",
     "types:publish": "flow-copy-source -i \"**/{__tests__,__mocks__}/**/*.js\" src .",
@@ -18,7 +18,7 @@
     "watch": "watch \"yarn build\" src"
   },
   "dependencies": {
-    "@spec/client": "0.1.0",
+    "@spec/config": "1.0.0",
     "body-parser": "1.17.2",
     "compression": "1.7.0",
     "config": "1.26.2",

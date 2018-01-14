@@ -10,6 +10,12 @@ program
     'Specify a specific template [default]',
     'default'
   )
+  .option(
+    '--npmClient [npmClient]',
+    'Specify a client to use to installd dependencies [npm,yarnpkg]',
+    'yarnpkg'
+  )
+  .option('--npmLink', 'Used for local development to link npm packages', false)
   .parse(process.argv);
 
 program.cwd = process.cwd();
