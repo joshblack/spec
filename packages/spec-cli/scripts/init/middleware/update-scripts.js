@@ -14,6 +14,7 @@ const getScripts = npmLink => {
   return {
     build: `${command} build`,
     dev: `${command} dev`,
+    'dev:server': `${command} dev:server`,
     test: `${command} test`,
     start: `${command} start`,
   };

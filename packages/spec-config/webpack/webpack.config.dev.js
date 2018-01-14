@@ -133,7 +133,7 @@ module.exports = {
           // directory for faster rebuilds.
           cacheDirectory: true,
           babelrc: false,
-          presets: ['es2015', 'stage-2', 'react'],
+          presets: ['@spec/spec'],
           plugins: [require.resolve('react-hot-loader/babel')],
         },
       },

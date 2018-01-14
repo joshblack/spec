@@ -4,8 +4,8 @@ const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const NameAllModulesPlugin = require('name-all-modules-plugin');
-const paths = require('./paths');
-const getClientEnvironment = require('./env');
+const paths = require('../paths');
+const getClientEnvironment = require('../env');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -50,7 +50,7 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: 'source-map',
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: [require.resolve('@spec/config/polyfills'), paths.appIndexJs],
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -136,11 +136,7 @@ module.exports = {
           compact: true,
           babelrc: false,
           sourceMaps: true,
-          presets: [
-            [require.resolve('babel-preset-es2015'), { modules: false }],
-            require.resolve('babel-preset-stage-2'),
-            require.resolve('babel-preset-react'),
-          ],
+          presets: ['@spec/spec'],
           plugins: [require.resolve('react-hot-loader/babel')],
         },
       },
