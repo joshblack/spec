@@ -17,6 +17,7 @@
   },
   "release": {},
   "devDependencies": {
+    "@semantic-release/npm": "2.6.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.0.6",
     "babel-preset-env": "^1.6.1",
