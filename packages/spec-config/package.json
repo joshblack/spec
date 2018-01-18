@@ -1,6 +1,6 @@
 {
   "name": "@spec/config",
-  "version": "1.1.8-0",
+  "version": "1.1.7",
   "license": "MIT",
   "author": "Josh Black <joshblack@us.ibm.com>",
   "repository": "https://github.com/joshblack/spec/tree/master/packages/spec-config",
@@ -18,7 +18,7 @@
     "polyfills.js"
   ],
   "dependencies": {
-    "@spec/babel-preset-spec": "1.1.8-0",
+    "@spec/babel-preset-spec": "1.1.7",
     "autoprefixer": "^7.2.5",
     "babel-jest": "^22.0.6",
     "babel-loader": "^7.1.2",
