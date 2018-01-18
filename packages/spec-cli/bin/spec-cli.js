@@ -15,4 +15,5 @@ program
   .command('start', 'start a production server process')
   .command('test', 'run tests through Jest')
   .alias('t')
+  .command('format', 'format source files using prettier')
   .parse(process.argv);

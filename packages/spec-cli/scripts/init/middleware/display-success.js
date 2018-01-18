@@ -3,7 +3,8 @@
 const chalk = require('chalk');
 
 module.exports = program => {
-  const displayedCommand = program.useNpm ? 'npm' : 'yarn';
+  const useYarn = !program.useNpm;
+  const displayedCommand = useYarn ? 'yarn' : 'npm';
 
   console.log();
   console.log(`Success!`);
