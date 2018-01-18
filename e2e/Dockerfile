@@ -6,4 +6,4 @@ WORKDIR /spec
 
 COPY . .
 
-ENTRYPOINT ["/spec/e2e/e2e-installs.sh"]
+ENTRYPOINT ["/spec/e2e/installs.sh"]

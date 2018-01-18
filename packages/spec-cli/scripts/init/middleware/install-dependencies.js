@@ -15,13 +15,20 @@ const getInstallCommand = (npmClient, npmLink) => {
 };
 
 module.exports = exports = program => {
-  const dependencies = ['@spec/server', 'react', 'react-dom', 'prop-types'];
+  const npmClient = program.useNpm ? 'npm' : 'yarnpkg';
+  const dependencies = [
+    '@spec/cli',
+    '@spec/server',
+    'react',
+    'react-dom',
+    'prop-types',
+  ];
   return new Promise((resolve, reject) => {
     const args = [
       ...getInstallCommand(program.npmClient, program.npmLink),
       ...dependencies,
     ];
-    const child = spawn(program.npmClient, args, { stdio: 'inherit' });
+    const child = spawn(npmClient, args, { stdio: 'inherit' });
     child.on('close', code => {
       if (code !== 0) {
         const error = new Error(
