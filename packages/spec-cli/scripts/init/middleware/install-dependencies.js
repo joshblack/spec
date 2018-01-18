@@ -15,7 +15,7 @@ const getInstallCommand = (npmClient, npmLink) => {
 };
 
 module.exports = exports = program => {
-  const dependencies = ['@spec/server'];
+  const dependencies = ['@spec/server', 'react', 'react-dom', 'prop-types'];
   return new Promise((resolve, reject) => {
     const args = [
       ...getInstallCommand(program.npmClient, program.npmLink),

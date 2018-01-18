@@ -6,7 +6,7 @@ import { AppContainer } from 'react-hot-loader';
 import App from './components/App';
 
 const mountNode = document.getElementById('root');
-const render = (Component: Node, callback: () => void): void => {
+const render = (Component, callback) => {
   ReactDOM.render(
     <AppContainer>{Component}</AppContainer>,
     mountNode,

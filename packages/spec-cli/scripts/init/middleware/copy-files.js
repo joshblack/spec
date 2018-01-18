@@ -5,8 +5,7 @@ const path = require('path');
 
 module.exports = async program => {
   const templatePath = path.resolve(
-    __dirname,
-    '../templates',
+    require.resolve('@spec/templates'),
     program.template
   );
   await fs.copy(templatePath, program.cwd);

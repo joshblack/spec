@@ -1,6 +1,6 @@
 'use strict';
 
-const validTemplates = require('../templates');
+const validTemplates = require('@spec/templates');
 
 module.exports = (program, next) => {
   if (!validTemplates.has(program.template)) {
