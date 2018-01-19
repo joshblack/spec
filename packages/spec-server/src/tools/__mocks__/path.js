@@ -14,6 +14,7 @@ path.__setNextResolve = pathToResolve => {
 };
 
 path.resolve = resolve;
+path.actualResolve = actualResolve;
 path.join = (...args) => {
   const realPath = require.requireActual('path');
   return realPath.join(...args);

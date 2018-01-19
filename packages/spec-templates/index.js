@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+
 const blacklist = new Set([
   '.gitignore',
   '.DS_Store',

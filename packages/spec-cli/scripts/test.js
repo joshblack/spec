@@ -1,6 +1,5 @@
 'use strict';
 
-const path = require('path');
 const jest = require('jest');
 const merge = require('lodash.merge');
 const createJestConfig = require('./tools/createJestConfig');

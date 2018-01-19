@@ -2,16 +2,15 @@
  * @jest-environment node
  */
 
-const path = require('path');
+'use strict';
 
-('use strict');
+const path = require('path');
 
 describe('resourceHints', () => {
   let assetManifest;
   let resourceHints;
   let preloadHints;
   let prefetchHints;
-  let defaultExtract;
   let print;
 
   beforeEach(() => {
@@ -19,7 +18,6 @@ describe('resourceHints', () => {
     resourceHints = require('../resourceHints');
     preloadHints = resourceHints.preloadHints;
     prefetchHints = resourceHints.prefetchHints;
-    defaultExtract = resourceHints.defaultExtract;
     print = resourceHints.print;
   });
 

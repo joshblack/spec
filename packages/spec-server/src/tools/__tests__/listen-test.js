@@ -9,6 +9,7 @@ const freeport = require.requireActual('freeport');
 
 describe('listen', () => {
   let path;
+  // eslint-disable-next-line no-unused-vars
   let config;
   let logger;
   let listen;

@@ -11,10 +11,6 @@ const createResponse = require('./createResponse');
 
 import type { Server, Context } from '../../types';
 
-type HtmlMiddlewareConfig = {|
-  getTitle: (req: any) => string,
-|};
-
 module.exports = (
   // TODO: Analytics Key
   // TODO: og:* properties

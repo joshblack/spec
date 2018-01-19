@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 'use strict';
 
 process.env.NODE_ENV = 'development';
@@ -5,6 +7,7 @@ process.env.NODE_ENV = 'development';
 const chalk = require('chalk');
 const path = require('path');
 const nodemon = require('nodemon');
+
 const script = path.resolve(process.cwd(), 'src/server/index.js');
 
 nodemon({ script });

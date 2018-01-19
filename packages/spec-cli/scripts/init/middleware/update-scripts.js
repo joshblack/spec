@@ -18,8 +18,8 @@ const getScripts = (npmLink, useNpm) => {
     commitmsg: 'validate-commit-msg',
     dev: `${command} dev`,
     'dev:server': `${command} dev:server`,
-    format: `prettier --write \"**/*.{scss,css,md,js,json}\"`,
-    'format:diff': `prettier --list-different \"**/*.{scss,css,md,js,json}\"`,
+    format: 'prettier --write "**/*.{scss,css,md,js,json}"',
+    'format:diff': 'prettier --list-different "**/*.{scss,css,md,js,json}"',
     precommit: 'lint-staged',
     test: `${command} test`,
     start: `${command} start`,
@@ -27,6 +27,7 @@ const getScripts = (npmLink, useNpm) => {
 };
 
 module.exports = program => {
+  // eslint-disable-next-line import/no-dynamic-require
   const packageJson = require(program.cwd + '/package.json');
 
   if (packageJson.scripts === undefined) {
@@ -54,6 +55,7 @@ module.exports = program => {
   packageJson.config = {
     'validate-commit-msg': {
       helpMessage:
+        // eslint-disable-next-line max-len
         '\nNeed help? We\'re currently using a commit convention that is outlined here:\nhttps://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md\n\nWe use this convention in order to make contributions to the project clear and predictable.\n\nCurrently, we support the following types: feat, fix, docs, style, refactor, perf, test, chore, revert.\n\nYou can use these types in your commit message in the following fashion:\n\n$ git commit -m "<type>(<scope>): some commit message here"',
     },
   };

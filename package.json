@@ -8,10 +8,11 @@
   "license": "MIT",
   "scripts": {
     "changelog": "lerna-changelog",
-    "ci-check": "yarn prettier:diff && yarn test --runInBand --no-watchman",
+    "ci-check": "yarn prettier:diff && yarn lint && yarn test --runInBand --no-watchman",
     "commitmsg": "validate-commit-msg",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lerna": "lerna",
+    "lint": "eslint -c packages/eslint-config-spec/index.js packages",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"**/*.{scss,css,js}\"",
     "prettier:diff": "prettier --list-different \"**/*.{scss,css,js}\"",
@@ -27,6 +28,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "enzyme": "^3.3.0",
     "enzyme-to-json": "^3.3.0",
+    "eslint": "^4.15.0",
     "flow-bin": "^0.63.1",
     "husky": "^0.14.3",
     "jest": "^22.0.6",
@@ -46,6 +48,7 @@
   "lint-staged": {
     "**/*.js": [
       "prettier",
+      "lint",
       "git add"
     ]
   },

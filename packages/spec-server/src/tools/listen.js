@@ -18,7 +18,8 @@ const listen = (server: Server): Promise<*> => {
   return new Promise((resolve, reject) => {
     const handler = service.listen(PORT, HOST, 511, error => {
       if (error) {
-        return reject(error);
+        reject(error);
+        return;
       }
       resolve(handler);
       logger.info(`Server listening at ${PROTOCOL}://${HOST}:${PORT}`);

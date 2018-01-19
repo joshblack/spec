@@ -8,6 +8,7 @@ const webpackConfig = require('@spec/config/webpack/webpack.config.dev');
 const errorf = require('./errorf');
 
 import type { ErrorMessage } from '../types';
+
 export type BuildContext = {|
   +assets: string,
   +manifest: { [key: string]: string },

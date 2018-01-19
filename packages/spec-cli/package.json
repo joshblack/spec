@@ -28,6 +28,7 @@
     "enzyme-to-json": "3.3.0",
     "fs-extra": "^5.0.0",
     "jest": "22.0.6",
+    "lodash.merge": "^4.6.0",
     "nodemon": "1.12.1",
     "prettier": "^1.10.2",
     "react": "16.x",

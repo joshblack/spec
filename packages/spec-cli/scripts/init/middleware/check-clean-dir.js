@@ -19,7 +19,7 @@ module.exports = (program, next) => {
         'overwrite them'
     );
     error.suggestion =
-      `Try removing the following files or running the command in a ` +
+      'Try removing the following files or running the command in a ' +
       `new folder. Files: ${JSON.stringify(filesInDirectory)}`;
     next(error);
   }

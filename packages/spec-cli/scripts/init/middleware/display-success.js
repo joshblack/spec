@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-disable no-console */
+
 const chalk = require('chalk');
 
 module.exports = program => {
@@ -7,7 +9,7 @@ module.exports = program => {
   const displayedCommand = useYarn ? 'yarn' : 'npm';
 
   console.log();
-  console.log(`Success!`);
+  console.log('Success!');
   console.log('Inside that directory, you can run several commands:');
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand}${useYarn ? '' : ' run'} dev`));

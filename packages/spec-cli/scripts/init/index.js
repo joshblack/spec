@@ -1,7 +1,5 @@
 'use strict';
 
-const chalk = require('chalk');
-const path = require('path');
 const createMiddlewareSequence = require('../tools/createMiddlewareSequence');
 
 const command = createMiddlewareSequence();

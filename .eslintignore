@@ -1,0 +1,12 @@
+# Generic build files
+node_modules
+build
+lib
+
+# Package-specific
+packages/spec-templates/product
+
+packages/spec-server/middleware
+packages/spec-server/tools
+packages/spec-server/types.js
+packages/spec-server/types.js.flow

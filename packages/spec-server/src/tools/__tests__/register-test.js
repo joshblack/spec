@@ -4,7 +4,6 @@ const express = require.requireActual('express');
 
 describe('register', () => {
   let listen;
-  let logger;
   let mockClose;
   let mockListen;
   let register;
@@ -20,7 +19,6 @@ describe('register', () => {
     jest.mock('../listen', () => mockListen);
 
     listen = require('../listen');
-    logger = require('../logger');
     register = require('../register');
   });
 
