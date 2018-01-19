@@ -1,7 +1,7 @@
 {
   "name": "@spec/cli",
   "description": "Setup and runtime tools for React-based projects.",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "license": "MIT",
   "author": "Josh Black <joshblack@us.ibm.com>",
   "bin": {
@@ -16,9 +16,9 @@
   },
   "scripts": {},
   "dependencies": {
-    "@spec/babel-preset-spec": "1.1.7",
-    "@spec/config": "1.1.7",
-    "@spec/templates": "1.1.7",
+    "@spec/babel-preset-spec": "1.2.0",
+    "@spec/config": "1.2.0",
+    "@spec/templates": "1.2.0",
     "babel-core": "6.26.0",
     "babel-jest": "22.0.6",
     "chalk": "^2.3.0",
