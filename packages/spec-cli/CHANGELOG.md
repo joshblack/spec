@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/joshblack/spec/tree/master/packages/spec-cli/compare/v1.3.1...v2.0.0) (2018-01-20)
+
+
+### Features
+
+* **cli:** add support for new template format ([6ae5bea](https://github.com/joshblack/spec/tree/master/packages/spec-cli/commit/6ae5bea))
+
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/joshblack/spec/tree/master/packages/spec-cli/compare/v1.2.0...v1.3.0) (2018-01-19)
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/joshblack/spec/tree/master/packages/spec-templates/compare/v1.3.1...v2.0.0) (2018-01-20)
+
+
+### Features
+
+* add eslintignore to [@spec](https://github.com/spec)/templates ([f5903eb](https://github.com/joshblack/spec/tree/master/packages/spec-templates/commit/f5903eb))
+* **template:** add package-specific templates and update entrypoint ([6d1399d](https://github.com/joshblack/spec/tree/master/packages/spec-templates/commit/6d1399d))
+
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/joshblack/spec/tree/master/packages/spec-templates/compare/v1.2.0...v1.3.0) (2018-01-19)
 

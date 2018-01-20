@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/joshblack/spec/compare/v1.3.1...v2.0.0) (2018-01-20)
+
+
+### Bug Fixes
+
+* **docs:** update README ([3c20eb5](https://github.com/joshblack/spec/commit/3c20eb5))
+* **docs:** update README ([bb33ae4](https://github.com/joshblack/spec/commit/bb33ae4))
+
+
+### Features
+
+* add eslintignore to [@spec](https://github.com/spec)/templates ([f5903eb](https://github.com/joshblack/spec/commit/f5903eb))
+* **cli:** add support for new template format ([6ae5bea](https://github.com/joshblack/spec/commit/6ae5bea))
+* **template:** add package-specific templates and update entrypoint ([6d1399d](https://github.com/joshblack/spec/commit/6d1399d))
+
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/joshblack/spec/compare/v1.3.0...v1.3.1) (2018-01-19)
 
