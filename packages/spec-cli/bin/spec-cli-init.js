@@ -4,11 +4,12 @@ const program = require('commander');
 const init = require('../scripts/init');
 
 program
+  .usage('<dir> [options]')
   .description('Scaffold out your application structure.')
   .option(
     '-t, --template [template]',
-    'Specify a specific template [default]',
-    'default'
+    'Specify a specific template [product]',
+    'product'
   )
   .option('--use-npm', 'Use npm instead of yarn, where available', false)
   .option(

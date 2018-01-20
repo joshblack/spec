@@ -1,15 +1,18 @@
 'use strict';
 
-const validTemplates = require('@spec/templates');
+const templates = require('@spec/templates');
 
 module.exports = (program, next) => {
-  if (!validTemplates.has(program.template)) {
+  if (!templates.has(program.template)) {
     const error = new Error(
       `No template available for template: \`${program.template}\`.`
     );
     error.suggestion =
       'Sorry about that! Try using one of our pre-defined ' +
-      'templates instead, such as `product`.';
+      'templates instead, such as ' +
+      templates.recommendedTemplates.join(', ');
     next(error);
   }
+
+  program.template = templates.get(program.template);
 };

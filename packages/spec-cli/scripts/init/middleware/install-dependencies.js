@@ -18,15 +18,13 @@ const getInstallCommand = (useNpm, npmLink) => {
 // the appropriate place in `package.json` then run `yarn`. For local stuff,
 // keep the same setup as we need to be able to link when appropriate
 module.exports = exports = program => {
-  const npmClient = program.useNpm ? 'npm' : 'yarnpkg';
-  const localDependencies = ['@spec/cli', '@spec/server'];
-  const dependencies = ['react', 'react-dom', 'prop-types'];
-  const devDependencies = [
-    'prettier',
-    'husky',
-    'lint-staged',
-    'validate-commit-msg',
-  ];
+  const { cwd, template, useNpm } = program;
+  const npmClient = useNpm ? 'npm' : 'yarnpkg';
+  const {
+    localDependencies,
+    dependencies,
+    devDependencies,
+  } = template.packageJson;
   const localInstallCommand = getInstallCommand(
     program.useNpm,
     program.npmLink
@@ -48,6 +46,7 @@ module.exports = exports = program => {
     };
 
     const installLocalDependencies = spawn(npmClient, localArgs, {
+      cwd,
       stdio: 'inherit',
     });
 
@@ -55,6 +54,7 @@ module.exports = exports = program => {
       handleExitCode(code, localArgs);
 
       const installDependencies = spawn(npmClient, dependencyArgs, {
+        cwd,
         stdio: 'inherit',
       });
 
@@ -62,6 +62,7 @@ module.exports = exports = program => {
         handleExitCode(code, dependencyArgs);
 
         const installDevDependencies = spawn(npmClient, devDependencyArgs, {
+          cwd,
           stdio: 'inherit',
         });
 

@@ -4,7 +4,7 @@ build
 lib
 
 # Package-specific
-packages/spec-templates/product
+packages/spec-template-product/files
 
 packages/spec-server/middleware
 packages/spec-server/tools

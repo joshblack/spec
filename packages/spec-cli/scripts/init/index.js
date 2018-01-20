@@ -4,8 +4,6 @@ const createMiddlewareSequence = require('../tools/createMiddlewareSequence');
 
 const command = createMiddlewareSequence();
 const middleware = [
-  // Convert template
-  require('./middleware/map-default'),
   // Validate template exists
   require('./middleware/validate-template'),
   // Make sure directory is clean
