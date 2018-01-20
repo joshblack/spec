@@ -1,16 +1,9 @@
 'use strict';
 
-const fs = require('fs');
+const templateProduct = require('@spec/template-product');
 
-const blacklist = new Set([
-  '.gitignore',
-  '.DS_Store',
-  'node_modules',
-  'index.js',
-  '.npmignore',
-]);
-const templates = fs
-  .readdirSync(__dirname)
-  .filter(file => !blacklist.has(file));
+const templates = new Map([[templateProduct.name, templateProduct]]);
 
-module.exports = new Set(templates);
+module.exports = exports = templates;
+exports.validTemplates = new Set(templates.keys());
+exports.recommendedTemplates = ['product'];
