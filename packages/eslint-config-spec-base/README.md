@@ -1,6 +1,6 @@
 # `eslint-config-spec-base`
 
-> Provides a base set of ESLint rules and plugins to be shared by IBM Watson projects.
+> Provides a base set of ESLint rules and plugins to be shared by `@spec/cli` projects.
 
 ## Usage
 
