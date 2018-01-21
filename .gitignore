@@ -3,6 +3,9 @@ build
 lib
 dist
 
+# Used for internal testing
+tmp
+
 # Config files
 .npmrc
 
