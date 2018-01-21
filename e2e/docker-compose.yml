@@ -9,6 +9,13 @@ services:
     volumes:
       - verdaccio:/verdaccio
 
+  test:
+    build:
+      context: ../
+      dockerfile: ./e2e/Dockerfile
+    depends_on:
+      - verdaccio
+
 volumes:
   verdaccio:
     driver: local
