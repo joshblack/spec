@@ -61,12 +61,13 @@ yarn config set registry "http://$custom_registry_url"
 npx npm-cli-login@0.0.10 -u user -p password -e user@example.com -r "http://$custom_registry_url" --quotes
 
 # Publish the monorepo
-./tasks/publish.sh --yes --force-publish=* --skip-git --cd-version=prerelease --exact --npm-tag=latest
+# ./tasks/publish.sh --yes --force-publish=* --skip-git --cd-version=prerelease --exact --npm-tag=latest
 
 # ******************************************************************************
 # Test default init command
 # ******************************************************************************
-npx @spec/cli init test-default
+# npm i -g --unsafe-perms node-sass
+# npx @spec/cli init test-default
 
 # Cleanup
 cleanup
