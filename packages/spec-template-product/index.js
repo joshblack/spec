@@ -1,11 +1,13 @@
 'use strict';
 
 const path = require('path');
+const cli = require('./cli');
 
 module.exports = {
   // Template name
   name: 'product',
   files: path.join(__dirname, 'files'),
+  cli,
   // `package.json` to be added to the template
   packageJson: {
     name: ({ directory }) => directory,

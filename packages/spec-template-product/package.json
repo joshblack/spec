@@ -6,7 +6,8 @@
   "main": "index.js",
   "files": [
     "index.js",
-    "files"
+    "files",
+    "cli"
   ],
   "author": "Josh Black <joshblack@us.ibm.com>",
   "repository": "https://github.com/joshblack/spec/tree/master/packages/spec-template-product",
@@ -15,5 +16,13 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@spec/config": "2.0.0",
+    "babel-jest": "^22.1.0",
+    "jest": "^22.1.4",
+    "lodash.merge": "^4.6.0",
+    "nodemon": "^1.14.11",
+    "webpack": "^3.10.0"
   }
 }
