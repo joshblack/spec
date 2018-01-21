@@ -1,8 +1,10 @@
 'use strict';
 
-const templateProduct = require('@spec/template-product');
-
-const templates = new Map([[templateProduct.name, templateProduct]]);
+const templates = new Map(
+  [require('@spec/template-product'), require('@spec/template-micro')].map(
+    template => [template.name, template]
+  )
+);
 
 module.exports = exports = templates;
 exports.validTemplates = new Set(templates.keys());
