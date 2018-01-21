@@ -2,22 +2,7 @@
 
 const spawn = require('cross-spawn');
 
-const getInstallCommand = (useNpm, npmLink) => {
-  if (npmLink) {
-    return ['link'];
-  }
-
-  if (!useNpm) {
-    return ['add', '--exact'];
-  }
-
-  return ['install', '--exact'];
-};
-
-// TODO: we could probably re-work this block to instead just place packages in
-// the appropriate place in `package.json` then run `yarn`. For local stuff,
-// keep the same setup as we need to be able to link when appropriate
-module.exports = exports = program => {
+module.exports = exports = async program => {
   const { cwd, template, useNpm } = program;
   const npmClient = useNpm ? 'npm' : 'yarnpkg';
   const {
@@ -30,12 +15,56 @@ module.exports = exports = program => {
     program.npmLink
   );
   const installCommand = getInstallCommand(program.useNpm, false);
-  const localArgs = [...localInstallCommand, ...localDependencies];
-  const dependencyArgs = [...installCommand, ...dependencies];
-  const devDependencyArgs = [...installCommand, ...devDependencies];
 
-  return new Promise((resolve, reject) => {
-    const handleExitCode = (code, args) => {
+  await sequence([
+    () => {
+      if (hasDependencyType(localDependencies)) {
+        return install(
+          npmClient,
+          [...localInstallCommand, ...localDependencies],
+          cwd
+        );
+      }
+    },
+    () => {
+      if (hasDependencyType(dependencies)) {
+        return install(npmClient, [...installCommand, ...dependencies], cwd);
+      }
+    },
+    () => {
+      if (hasDependencyType(devDependencies)) {
+        return install(npmClient, [...installCommand, ...devDependencies], cwd);
+      }
+    },
+  ]);
+};
+
+const getInstallCommand = (useNpm, npmLink) => {
+  if (npmLink) {
+    return ['link'];
+  }
+
+  if (!useNpm) {
+    return ['add', '--exact'];
+  }
+
+  return ['install', '--exact'];
+};
+
+const sequence = async iterable => {
+  for (let item of iterable) {
+    await item();
+  }
+};
+
+const install = (npmClient, args, cwd) =>
+  new Promise((resolve, reject) => {
+    const installStep = spawn(npmClient, args, {
+      cwd,
+      stdio: 'inherit',
+    });
+
+    installStep.on('close', code => {
       if (code !== 0) {
         const error = new Error(
           'Install step failed with args: ' + args.join(' ')
@@ -43,36 +72,20 @@ module.exports = exports = program => {
         reject(error);
         return;
       }
-    };
-
-    const installLocalDependencies = spawn(npmClient, localArgs, {
-      cwd,
-      stdio: 'inherit',
-    });
-
-    installLocalDependencies.on('close', code => {
-      handleExitCode(code, localArgs);
-
-      const installDependencies = spawn(npmClient, dependencyArgs, {
-        cwd,
-        stdio: 'inherit',
-      });
-
-      installDependencies.on('close', code => {
-        handleExitCode(code, dependencyArgs);
-
-        const installDevDependencies = spawn(npmClient, devDependencyArgs, {
-          cwd,
-          stdio: 'inherit',
-        });
-
-        installDevDependencies.on('close', code => {
-          handleExitCode(code, devDependencyArgs);
-          resolve();
-        });
-      });
+      resolve();
     });
   });
+
+const hasDependencyType = dependencies => {
+  if (Array.isArray(dependencies)) {
+    if (dependencies.length > 0) {
+      return true;
+    }
+  }
+  return false;
 };
 
 exports.getInstallCommand = getInstallCommand;
+exports.install = install;
+exports.sequence = sequence;
+exports.hasDependencyType = hasDependencyType;

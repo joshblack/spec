@@ -45,9 +45,17 @@ module.exports = async program => {
         ...templatePackageJson.scripts({
           npmClient: program.useNpm ? 'npm' : 'yarn',
           cliCommand: program.npmLink
-            ? `../packages/spec-cli/bin/${CLI_NAME}.js`
+            ? path.relative(
+                program.cwd,
+                path.resolve(__dirname, '../../../bin/spec-cli.js')
+              )
             : CLI_NAME,
         }),
+      },
+    },
+    {
+      spec: {
+        template: program.template.name,
       },
     },
     exists('config', localPackageJson.config),

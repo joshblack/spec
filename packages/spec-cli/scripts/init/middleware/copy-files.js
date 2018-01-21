@@ -5,8 +5,10 @@ const path = require('path');
 
 module.exports = async program => {
   await fs.copy(program.template.files, program.cwd);
-  await fs.move(
-    path.join(program.cwd, 'gitignore'),
-    path.join(program.cwd, '.gitignore')
-  );
+  if (await fs.pathExists(path.join(program.cwd, 'gitignore'))) {
+    await fs.move(
+      path.join(program.cwd, 'gitignore'),
+      path.join(program.cwd, '.gitignore')
+    );
+  }
 };

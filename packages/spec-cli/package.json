@@ -1,6 +1,6 @@
 {
   "name": "@spec/cli",
-  "description": "Setup and runtime tools for React-based projects.",
+  "description": "Setup and scaffolding-related tools for @spec templates.",
   "version": "2.0.0",
   "license": "MIT",
   "author": "Josh Black <joshblack@us.ibm.com>",
@@ -14,31 +14,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {},
   "dependencies": {
-    "@spec/babel-preset-spec": "2.0.0",
-    "@spec/config": "2.0.0",
     "@spec/templates": "2.0.0",
-    "babel-core": "6.26.0",
-    "babel-jest": "22.0.6",
-    "chalk": "^2.3.0",
     "commander": "2.11.0",
-    "cross-spawn": "5.1.0",
-    "enzyme": "3.3.0",
-    "enzyme-to-json": "3.3.0",
-    "fs-extra": "^5.0.0",
-    "jest": "22.0.6",
-    "lodash.merge": "^4.6.0",
-    "nodemon": "1.12.1",
-    "prettier": "^1.10.2",
-    "react": "16.x",
-    "react-addons-test-utils": "^15.6.2",
-    "react-dev-utils": "4.1.0",
-    "react-dom": "16.x",
-    "webpack": "^3.10.0"
-  },
-  "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x"
+    "fs-extra": "^5.0.0"
   }
 }
