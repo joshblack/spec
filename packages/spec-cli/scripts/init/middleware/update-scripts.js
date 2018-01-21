@@ -44,12 +44,14 @@ module.exports = async program => {
         ...localPackageJson.scripts,
         ...templatePackageJson.scripts({
           npmClient: program.useNpm ? 'npm' : 'yarn',
+          /* eslint-disable indent */
           cliCommand: program.npmLink
             ? path.relative(
                 program.cwd,
                 path.resolve(__dirname, '../../../bin/spec-cli.js')
               )
             : CLI_NAME,
+          /* eslint-enable indent */
         }),
       },
     },

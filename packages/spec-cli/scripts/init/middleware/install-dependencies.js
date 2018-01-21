@@ -52,7 +52,7 @@ const getInstallCommand = (useNpm, npmLink) => {
 };
 
 const sequence = async iterable => {
-  for (let item of iterable) {
+  for (const item of iterable) {
     await item();
   }
 };
