@@ -1,10 +1,8 @@
 #!/bin/bash
 
-# Start in e2e/ even if run from root directory
-cd "$(dirname "$0")"
-
 temp_app_path=`mktemp -d 2>/dev/null || mktemp -d -t 'temp_app_path'`
-custom_registry_url="verdaccio:4873"
+custom_registry="verdaccio:4873"
+custom_registry_url="http://$custom_registry"
 original_npm_registry_url=`npm get registry`
 original_yarn_registry_url=`yarn config get registry`
 
@@ -46,28 +44,9 @@ trap 'set +x; handle_exit' SIGQUIT SIGTERM SIGINT SIGKILL SIGHUP
 # Echo every command being executed
 set -x
 
-# Go to root
-cd ..
-root_path=$PWD
+# Update `npm` config settings to let packages like `node-sass` install
+npm config set user 0
+npm config set unsafe-perm true
 
-# Verify local registry has started
-/bin/bash ./tasks/wait-for-it.sh "$custom_registry_url"
-
-# Set registry to local registry
-npm set registry "http://$custom_registry_url"
-yarn config set registry "http://$custom_registry_url"
-
-# Login so we can publish packages
-npx npm-cli-login@0.0.10 -u user -p password -e user@example.com -r "http://$custom_registry_url" --quotes
-
-# Publish the monorepo
-# ./tasks/publish.sh --yes --force-publish=* --skip-git --cd-version=prerelease --exact --npm-tag=latest
-
-# ******************************************************************************
-# Test default init command
-# ******************************************************************************
-# npm i -g --unsafe-perms node-sass
-# npx @spec/cli init test-default
-
-# Cleanup
-cleanup
+# Handle network timeout issue with verdaccio
+yarn config set network-timeout 1000000
