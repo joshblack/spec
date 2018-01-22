@@ -1,7 +1,7 @@
 {
   "name": "@spec/templates",
   "description": "Template folders for scaffolding with @spec/cli",
-  "version": "2.1.0-1",
+  "version": "2.1.0",
   "main": "index.js",
   "license": "MIT",
   "author": "Josh Black <joshblack@us.ibm.com>",
@@ -13,6 +13,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@spec/template-product": "2.1.0-1"
+    "@spec/template-product": "2.1.0"
   }
 }
