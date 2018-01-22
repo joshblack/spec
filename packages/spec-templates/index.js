@@ -1,9 +1,7 @@
 'use strict';
 
 const templates = new Map(
-  [require('@spec/template-product'), require('@spec/template-micro')].map(
-    template => [template.name, template]
-  )
+  [require('@spec/template-product')].map(template => [template.name, template])
 );
 
 module.exports = exports = templates;

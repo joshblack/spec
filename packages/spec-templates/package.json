@@ -13,7 +13,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@spec/template-micro": "2.0.0",
     "@spec/template-product": "2.0.0"
   }
 }

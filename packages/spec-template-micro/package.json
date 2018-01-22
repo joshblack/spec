@@ -1,5 +1,6 @@
 {
   "name": "@spec/template-micro",
+  "private": true,
   "version": "2.0.0",
   "description": "Micro template for projects built with @spec/cli",
   "main": "index.js",
