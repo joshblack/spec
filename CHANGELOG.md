@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/joshblack/spec/compare/v2.1.1...v2.1.2) (2018-01-22)
+
+
+### Bug Fixes
+
+* **config:** add sourceMap option for postcss-loader ([c30a81e](https://github.com/joshblack/spec/commit/c30a81e))
+
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/joshblack/spec/compare/v2.1.0...v2.1.1) (2018-01-22)
 
