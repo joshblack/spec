@@ -9,8 +9,5 @@
   "repository": "https://github.com/joshblack/spec/tree/master/packages/spec-template-micro",
   "bugs": {
     "url": "https://github.com/joshblack/spec/issues"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
