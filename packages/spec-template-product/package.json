@@ -1,6 +1,6 @@
 {
   "name": "@spec/template-product",
-  "version": "2.1.0-0",
+  "version": "2.1.0-1",
   "description": "Product template for projects built with @spec/cli",
   "license": "MIT",
   "main": "index.js",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@spec/config": "2.1.0-0",
+    "@spec/config": "2.1.0-1",
     "babel-jest": "^22.1.0",
     "chalk": "^2.3.0",
     "fs-extra": "^5.0.0",

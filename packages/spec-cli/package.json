@@ -1,7 +1,7 @@
 {
   "name": "@spec/cli",
   "description": "Setup and scaffolding-related tools for @spec templates.",
-  "version": "2.1.0-0",
+  "version": "2.1.0-1",
   "license": "MIT",
   "author": "Josh Black <joshblack@us.ibm.com>",
   "bin": {
@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@spec/templates": "2.1.0-0",
+    "@spec/templates": "2.1.0-1",
     "chalk": "^2.3.0",
     "commander": "2.11.0",
     "cross-spawn": "^5.1.0",
