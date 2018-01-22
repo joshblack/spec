@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 'use strict';
 
 const mockValidCertPath = 'ssl/__valid_cert_path__';

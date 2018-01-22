@@ -7,8 +7,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "changelog": "lerna-changelog",
     "ci-check": "yarn prettier:diff && yarn lint && yarn test --runInBand --no-watchman",
+    "clean": "lerna clean --yes && rm -rf node_modules",
     "commitmsg": "validate-commit-msg",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lerna": "lerna",
@@ -20,9 +20,8 @@
   },
   "release": {},
   "devDependencies": {
-    "@semantic-release/npm": "2.6.0",
     "babel-core": "^6.26.0",
-    "babel-jest": "^22.0.6",
+    "babel-jest": "^22.1.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
@@ -31,13 +30,11 @@
     "eslint": "^4.15.0",
     "flow-bin": "^0.63.1",
     "husky": "^0.14.3",
-    "jest": "^22.0.6",
+    "jest": "^22.1.4",
     "lerna": "2.6.0",
     "lint-staged": "^6.0.0",
     "prettier": "^1.10.2",
     "react": "^16.2.0",
-    "semantic-release": "^12.2.2",
-    "semantic-release-monorepo": "^4.2.1",
     "validate-commit-msg": "^2.14.0"
   },
   "config": {
@@ -63,8 +60,13 @@
       "<rootDir>/packages/**/*.js"
     ],
     "setupFiles": [],
+    "testEnvironment": "jsdom",
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.js?(x)"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/files/"
     ],
     "transform": {
       ".+\\.(js|jsx)$": "<rootDir>/packages/spec-config/jest/jsTransform.js",

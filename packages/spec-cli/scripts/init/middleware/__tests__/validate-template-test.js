@@ -13,9 +13,10 @@ describe('validate-template middleware', () => {
   beforeEach(() => {
     mockProgram = {};
     mockNext = jest.fn();
-    mockValidTemplates = new Set(['a', 'b', 'c']);
+    mockValidTemplates = new Map([['a', {}], ['b', {}]]);
+    mockValidTemplates.recommendedTemplates = ['a'];
 
-    jest.mock('../../templates', () => mockValidTemplates);
+    jest.mock('@spec/templates', () => mockValidTemplates);
     middleware = require('../validate-template');
   });
 
