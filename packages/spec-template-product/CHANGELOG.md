@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/joshblack/spec/tree/master/packages/spec-template-product/compare/v2.1.0...v2.1.1) (2018-01-22)
+
+
+### Bug Fixes
+
+* **template:** allow unknown options in commands ([28393bd](https://github.com/joshblack/spec/tree/master/packages/spec-template-product/commit/28393bd))
+* **template:** update prod config ([811acc0](https://github.com/joshblack/spec/tree/master/packages/spec-template-product/commit/811acc0))
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/joshblack/spec/tree/master/packages/spec-template-product/compare/v2.1.0-1...v2.1.0) (2018-01-22)
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/joshblack/spec/tree/master/packages/spec-cli/compare/v2.1.0...v2.1.1) (2018-01-22)
+
+
+### Bug Fixes
+
+* **cli:** add --dev flag for devDependencies ([bed3008](https://github.com/joshblack/spec/tree/master/packages/spec-cli/commit/bed3008))
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/joshblack/spec/tree/master/packages/spec-cli/compare/v2.1.0-1...v2.1.0) (2018-01-22)
 

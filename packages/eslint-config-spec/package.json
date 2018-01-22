@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-spec",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "ESLint configuration and rules for @spec templates.",
   "author": "Josh Black <joshblack@us.ibm.com>",
   "repository": "https://github.com/joshblack/spec/tree/master/packages/eslint-config-spec-base",
@@ -16,7 +16,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "eslint-config-spec-base": "2.1.0"
+    "eslint-config-spec-base": "2.1.1"
   },
   "devDependencies": {
     "eslint": "^4.2.0",
