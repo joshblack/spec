@@ -33,7 +33,11 @@ module.exports = exports = async program => {
     },
     () => {
       if (hasDependencyType(devDependencies)) {
-        return install(npmClient, [...installCommand, ...devDependencies], cwd);
+        return install(
+          npmClient,
+          [...installCommand, '--dev', ...devDependencies],
+          cwd
+        );
       }
     },
   ]);
