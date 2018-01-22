@@ -46,7 +46,7 @@
     }
   },
   "lint-staged": {
-    "**/*.js": [
+    "*.js": [
       "prettier",
       "lint",
       "git add"
