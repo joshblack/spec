@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0-0"></a>
+# [2.1.0-0](https://github.com/joshblack/spec/compare/v2.0.0...v2.1.0-0) (2018-01-22)
+
+
+### Features
+
+* **cli:** update CLI to load-in scripts from template ([06b3178](https://github.com/joshblack/spec/commit/06b3178))
+* **cli:** update display success step ([589823e](https://github.com/joshblack/spec/commit/589823e))
+* **template:** add micro template ([b42a807](https://github.com/joshblack/spec/commit/b42a807))
+* **template:** add micro template to templates ([be95a6c](https://github.com/joshblack/spec/commit/be95a6c))
+* **template:** add micro template to templates ([b82f9b0](https://github.com/joshblack/spec/commit/b82f9b0))
+* **template:** update product template to use CLI option ([62c2566](https://github.com/joshblack/spec/commit/62c2566))
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/joshblack/spec/compare/v1.3.1...v2.0.0) (2018-01-20)
 

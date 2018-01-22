@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0-0"></a>
+# [2.1.0-0](https://github.com/joshblack/spec/tree/master/packages/spec-templates/compare/v2.0.0...v2.1.0-0) (2018-01-22)
+
+
+### Features
+
+* **template:** add micro template to templates ([be95a6c](https://github.com/joshblack/spec/tree/master/packages/spec-templates/commit/be95a6c))
+* **template:** add micro template to templates ([b82f9b0](https://github.com/joshblack/spec/tree/master/packages/spec-templates/commit/b82f9b0))
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/joshblack/spec/tree/master/packages/spec-templates/compare/v1.3.1...v2.0.0) (2018-01-20)
 
