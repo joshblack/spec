@@ -10,12 +10,12 @@ const middleware = [
   require('./middleware/check-clean-dir'),
   // Copy files over
   require('./middleware/copy-files'),
-  // Update scripts
-  require('./middleware/update-scripts'),
-  // Install dependencies
-  require('./middleware/install-dependencies'),
-  // Display success message with steps to start using the new project
-  require('./middleware/display-success'),
+  // // Update scripts
+  // require('./middleware/update-scripts'),
+  // // Install dependencies
+  // require('./middleware/install-dependencies'),
+  // // Display success message with steps to start using the new project
+  // require('./middleware/display-success'),
 ];
 
 const error = [require('./error')];

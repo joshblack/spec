@@ -1,18 +1,48 @@
 'use strict';
 
-const templates = require('@spec/templates');
+const { exec } = require('child_process');
+const util = require('util');
 
-module.exports = (program, next) => {
-  if (!templates.has(program.template)) {
-    const error = new Error(
-      `No template available for template: \`${program.template}\`.`
-    );
+const execAsync = util.promisify(exec);
+
+const getTemplatePackage = async (string, { cwd, npmClient = 'yarn' }) => {
+  if (string.includes('https') || string.includes('git')) {
+    const error = new Error('Recieved a possible URL-based template');
     error.suggestion =
-      'Sorry about that! Try using one of our pre-defined ' +
-      'templates instead, such as ' +
-      templates.recommendedTemplates.join(', ');
-    next(error);
+      'We currently do not support URL-based templates, ' +
+      'but we hope to in the future!';
+    return { error };
   }
 
-  program.template = templates.get(program.template);
+  const pkg = `@spec/template-${string}`;
+
+  try {
+    await execAsync(`${npmClient} info ${pkg}`, {
+      cwd,
+    });
+  } catch (e) {
+    const error = new Error(
+      'Received a template name for a package that does not exist'
+    );
+    error.suggestion =
+      'Looks like the name for the template that you passed in ' +
+      'is not currently published to npm.\nSpecifically, the command ' +
+      `\`${npmClient} info ${pkg}\` did not return any results.`;
+    return { error };
+  }
+
+  return { pkg };
+};
+
+module.exports = exports = async (program, next) => {
+  const { error, pkg } = await getTemplatePackage(program.template, {
+    cwd: program.cwd,
+  });
+
+  if (error) {
+    next(error);
+    return;
+  }
+
+  program.template = pkg;
 };

@@ -15,7 +15,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@spec/templates": "2.1.2",
     "chalk": "^2.3.0",
     "commander": "2.11.0",
     "cross-spawn": "^5.1.0",
