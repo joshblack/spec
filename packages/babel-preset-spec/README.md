@@ -1,1 +1,0 @@
-# `@spec/babel-preset-spec`

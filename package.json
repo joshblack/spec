@@ -2,50 +2,44 @@
   "name": "spec",
   "version": "0.0.0",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": []
+  },
   "license": "MIT",
   "scripts": {
-    "ci-check": "yarn prettier:diff && yarn lint && yarn test --runInBand --no-watchman",
+    "ci-check": "yarn prettier:diff && yarn test --runInBand",
     "clean": "lerna clean --yes && rm -rf node_modules",
-    "commitmsg": "validate-commit-msg",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "lerna": "lerna",
-    "lint": "eslint -c packages/eslint-config-spec/index.js packages",
     "precommit": "lint-staged",
-    "prettier": "prettier --write \"**/*.{scss,css,js}\"",
-    "prettier:diff": "prettier --list-different \"**/*.{scss,css,js}\"",
+    "format": "prettier --write \"**/*.{scss,css,js}\"",
+    "format:diff": "prettier --list-different \"**/*.{scss,css,js}\"",
     "test": "jest"
   },
-  "release": {},
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-jest": "^22.1.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "enzyme": "^3.3.0",
-    "enzyme-to-json": "^3.3.0",
-    "eslint": "^4.15.0",
-    "flow-bin": "^0.63.1",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/preset-flow": "^7.0.0-beta.51",
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.1",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^23.0.1",
     "husky": "^0.14.3",
-    "jest": "^22.1.4",
-    "lerna": "2.6.0",
-    "lint-staged": "^6.0.0",
-    "prettier": "^1.10.2",
-    "react": "^16.2.0",
-    "validate-commit-msg": "^2.14.0"
+    "jest": "^23.1.0",
+    "lerna": "^2.11.0",
+    "lint-staged": "^7.1.3",
+    "prettier": "^1.13.4"
   },
-  "config": {
-    "validate-commit-msg": {
-      "helpMessage": "\nNeed help? We're currently using a commit convention that is outlined here:\nhttps://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md\n\nWe use this convention in order to make contributions to the project clear and predictable.\n\nCurrently, we support the following types: feat, fix, docs, style, refactor, perf, test, chore, revert.\n\nYou can use these types in your commit message in the following fashion:\n\n$ git commit -m \"<type>(<scope>): some commit message here\""
-    }
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "lint-staged": {
-    "*.js": [
-      "prettier",
-      "lint",
+    ".{js,md}": [
+      "yarn format",
       "git add"
     ]
   },
@@ -60,19 +54,15 @@
       "<rootDir>/packages/**/*.js"
     ],
     "setupFiles": [],
-    "testEnvironment": "jsdom",
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.js?(x)"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "/files/"
+      "/files/",
+      "/fixtures/",
+      "/packages-old/"
     ],
-    "transform": {
-      ".+\\.(js|jsx)$": "<rootDir>/packages/spec-config/jest/jsTransform.js",
-      ".+\\.css$": "<rootDir>/packages/spec-config/jest/cssTransform.js",
-      "(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/packages/spec-config/jest/fileTransform.js"
-    },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ],
@@ -80,8 +70,6 @@
       "js",
       "json"
     ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ]
+    "snapshotSerializers": []
   }
 }

@@ -1,0 +1,50 @@
+{
+  "name": "@spec/cli-plugin-ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "cli": "spec"
+  },
+  "dependencies": {
+    "@spec/cli": "1.0.0",
+    "@spec/cli-plugin-build": "1.0.0",
+    "@spec/cli-plugin-develop": "1.0.0",
+    "@spec/cli-plugin-env": "1.0.0",
+    "@spec/cli-plugin-paths": "1.0.0",
+    "@spec/cli-plugin-webpack": "1.0.0",
+    "@spec/coordinator": "1.0.0",
+    "@spec/server": "1.0.0",
+    "apollo-cache-inmemory": "^1.2.5",
+    "apollo-client": "^2.3.5",
+    "apollo-link-http": "^1.5.4",
+    "carbon-components": "^9.1.16",
+    "carbon-components-react": "^6.8.0",
+    "carbon-icons": "^7.0.7",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "fs-extra": "^6.0.1",
+    "glamor": "^2.20.40",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "react": "^16.4.1",
+    "react-apollo": "^2.1.8",
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1"
+  },
+  "spec": {
+    "plugins": [
+      "@spec/cli-plugin-env",
+      "@spec/cli-plugin-paths",
+      "@spec/cli-plugin-webpack",
+      "@spec/cli-plugin-develop",
+      "@spec/cli-plugin-build",
+      "@spec/cli-plugin-ui"
+    ]
+  },
+  "devDependencies": {
+    "chalk": "^2.4.1",
+    "nodemon": "^1.17.5"
+  }
+}

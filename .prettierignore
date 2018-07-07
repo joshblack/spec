@@ -1,10 +1,11 @@
 build
 lib
-dist
+es
+umd
+umd.*
+*.umd
+*.umd.*
 package.json
-
-# Package-specific
-packages/spec-server/middleware/
-packages/spec-server/tools/
-packages/spec-server/types.js
-packages/spec-server/types.js.flow
+__testfixtures__
+css
+scss
