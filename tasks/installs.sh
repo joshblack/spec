@@ -25,7 +25,7 @@ npx npm-cli-login@0.0.10 -u user -p password -e user@example.com -r "$custom_reg
 # ******************************************************************************
 # Test default init command
 # ******************************************************************************
-npx @spec/cli init test-default
+# npx @spec/cli init test-default
 
 # Cleanup
 cleanup

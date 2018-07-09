@@ -1,7 +1,7 @@
 'use strict';
 
-const packageJson = require('../package.json');
 const { Coordinator } = require('@spec/coordinator');
+const packageJson = require('./package.json');
 
 async function main({ argv }) {
   const cli = await Coordinator.cli();

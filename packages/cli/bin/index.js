@@ -2,6 +2,9 @@
 
 'use strict';
 
+// Inspired by Create React App
+// https://github.com/facebook/create-react-app/blob/next/packages/create-react-app/index.js
+
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
@@ -25,7 +28,7 @@ if (major < 8) {
   process.exit(1);
 }
 
-const main = require('../src');
+const main = require('../');
 
 main(process).catch(error => {
   console.error(error);

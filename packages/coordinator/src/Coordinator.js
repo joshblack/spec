@@ -1,41 +1,81 @@
 'use strict';
 
 const cosmiconfig = require('cosmiconfig');
-const { loadPlugins } = require('./plugins');
+const { linkPlugin, loadPlugins } = require('./plugins');
 const defaultResolve = require('./resolve');
 const PluginAPI = require('./PluginAPI');
 
 class Coordinator {
-  constructor(name, cwd, program, configLoader, resolve) {
+  constructor({
+    name,
+    cwd,
+    program,
+    logger,
+    defaultPlugins = [],
+    configLoader = cosmiconfig(name).search,
+    resolve = defaultResolve,
+  }) {
     this.name = name;
     this.cwd = cwd;
     this.program = program;
 
-    this.api = new PluginAPI();
+    this.api = new PluginAPI(logger);
+    this.plugins = defaultPlugins;
 
-    this._configLoader = configLoader || cosmiconfig(name).search;
-    this._resolve = resolve || defaultResolve;
+    this._configLoader = configLoader;
+    this._logger = logger;
+    this._resolve = resolve;
     this._synced = false;
   }
 
   async sync() {
-    console.log('Syncing...');
+    this._logger.info('Syncing coordinator');
 
     if (this._synced) {
-      return true;
+      return;
     }
 
-    this.plugins = await loadPlugins(this._configLoader, this._resolve);
+    try {
+      const remotePlugins = await loadPlugins(
+        this._configLoader,
+        this._resolve,
+        this._logger
+      );
+      this.plugins = this.plugins.concat(remotePlugins);
+    } catch (error) {
+      console.error(error);
+      return;
+    }
 
-    for (let { name, plugin, options } of this.plugins) {
-      await plugin({ api: this.api, cwd: this.cwd, options });
+    try {
+      for (let { name, plugin, options } of this.plugins) {
+        await plugin({
+          api: this.api,
+          Coordinator: this,
+          cwd: this.cwd,
+          options,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      return;
     }
 
     this._synced = true;
   }
 
+  async add(name) {
+    this._logger.info(`Add plugin: ${name}`);
+  }
+
+  async addLocal(name) {
+    this._logger.info(`Add local plugin: ${name}`);
+    await linkPlugin(name, this._logger);
+  }
+
   async cli() {
-    console.log('Loading cli...');
+    this._logger.info('Loading cli');
+
     await this.sync();
     return await this.api.registerCommands(this.program);
   }

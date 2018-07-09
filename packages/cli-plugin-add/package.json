@@ -1,0 +1,6 @@
+{
+  "name": "@spec/cli-plugin-add",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}

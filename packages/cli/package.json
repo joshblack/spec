@@ -1,7 +1,7 @@
 {
   "name": "@spec/cli",
   "bin": {
-    "spec": "./bin/index.js"
+    "spec-cli": "./bin/index.js"
   },
   "engines": {
     "node": ">=8"
@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "@spec/coordinator": "1.0.0",
-    "chalk": "^2.4.1",
-    "commander": "^2.15.1"
+    "chalk": "^2.4.1"
   }
 }

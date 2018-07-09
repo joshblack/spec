@@ -1,5 +1,6 @@
 'use strict';
 
+const { installDependencies } = require('@spec/cli-tools/npm');
 const Joi = require('joi');
 
 const schema = {
@@ -12,36 +13,37 @@ const schema = {
   ),
 };
 
-async function loadPlugins(loader, resolve) {
-  console.log('Loading plugins...');
+async function loadPlugins(loader, resolve, logger) {
+  logger.info('Loading plugins');
+
   const result = await loader();
   if (!result) {
-    console.log('No config found');
-    return;
+    logger.debug('No config found');
+    return [];
   }
 
   const { config, isEmpty } = result;
   if (isEmpty) {
-    console.log('Config found, but nothing is specified');
-    return;
+    logger.debug('Config found, but nothing is specified');
+    return [];
   }
 
   const { error, value } = Joi.validate(config, schema);
   if (error) {
-    console.log(error);
-    return;
+    logger.error(error);
+    throw error;
   }
 
   return await Promise.all(
-    value.plugins.map(descriptor => loadPlugin(descriptor, resolve))
+    value.plugins.map(descriptor => loadPlugin(descriptor, resolve, logger))
   );
 }
 
-async function loadPlugin(descriptor, resolve) {
+async function loadPlugin(descriptor, resolve, logger) {
   const config = Array.isArray(descriptor) ? descriptor : [descriptor];
   const [name, options = {}] = config;
 
-  console.log('Loading plugin:', name);
+  logger.info('Loading plugin:', name);
 
   const plugin = await resolve(name);
 
@@ -51,6 +53,8 @@ async function loadPlugin(descriptor, resolve) {
     options,
   };
 }
+
+async function linkPlugin(npmClient, logger) {}
 
 module.exports = {
   loadPlugins,

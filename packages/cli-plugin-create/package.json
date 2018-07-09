@@ -1,0 +1,11 @@
+{
+  "name": "@spec/cli-plugin-create",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@spec/cli-tools": "1.0.0",
+    "fs-extra": "^6.0.1",
+    "npm-which": "^3.0.1"
+  }
+}

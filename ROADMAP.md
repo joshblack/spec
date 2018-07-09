@@ -8,11 +8,11 @@
     - [ ] From the URL of a package on GitHub enterprise
     - [ ] From the path of a local package
   - [ ] Add a plugin using the `add` command
-  - [ ] Update a plugin using the `update` command
+  - [ ] Update a plugin using the `upgrade` command
   - [ ] Remove a plugin using the `remove` command
 - [ ] Plugins
-  - [ ] Can be customized through options in a `spec.config.js` file
-  - [ ] Can define a store for other plugins to read/write to
+  - [x] Can be customized through options in a `spec.config.js` file
+  - [x] Can define a store for other plugins to read/write to
 - [ ] Coordinator
-  - [ ] Can read from local plugins
-  - [ ] Can read from remote plugins
+  - [x] Can read from local plugins
+  - [x] Can read from remote plugins
