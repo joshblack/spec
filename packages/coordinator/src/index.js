@@ -1,20 +1,18 @@
 'use strict';
 
 const program = require('commander');
-const addPlugin = require('@spec/cli-plugin-add');
-const createPlugin = require('@spec/cli-plugin-create');
 const Coordinator = require('./Coordinator');
 const { logger } = require('@spec/cli-tools/logger');
 
 const defaultPlugins = [
   {
     name: '@spec/cli-plugin-add',
-    plugin: addPlugin,
+    plugin: require('@spec/cli-plugin-add'),
     options: {},
   },
   {
     name: '@spec/cli-plugin-create',
-    plugin: createPlugin,
+    plugin: require('@spec/cli-plugin-create'),
     options: {},
   },
 ];

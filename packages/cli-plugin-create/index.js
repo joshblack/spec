@@ -17,7 +17,7 @@ module.exports = ({ api, cwd }) => {
         description:
           'Specify the name of the plugin you want to use to use to create ' +
           'your project',
-        defaults: '@spec/cli-plugin-ui-service',
+        defaults: '@spec/cli-plugin-ui-server',
       },
       {
         flags: '--npmClient <npmClient>',

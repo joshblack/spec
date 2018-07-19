@@ -14,7 +14,6 @@ async function create(name, cmd, root, logger) {
   logger.info('Creating', `'${name}'`, 'with:', cmd, 'at:', root);
 
   const { npmClient, plugin, useLink } = cmd;
-  const shellOptions = { cwd: root };
 
   if (await fs.pathExists(root)) {
     const files = await fs.readdir(root);
@@ -33,13 +32,13 @@ async function create(name, cmd, root, logger) {
   }
 
   await fs.ensureDir(root);
-  await init(npmClient, shellOptions);
+  await init(npmClient, { cwd: root });
 
   if (useLink) {
     const localCLIPath = path.resolve(__dirname, '../../cli');
 
     await linkDependency(npmClient, localCLIPath);
-    await linkDependencies(npmClient, ['@spec/cli'], shellOptions);
+    await linkDependencies(npmClient, ['@spec/cli'], { cwd: root });
 
     const bin = await getGlobalBinPath(npmClient);
     const cli = path.join(bin.trim(), 'spec-cli');
@@ -48,10 +47,11 @@ async function create(name, cmd, root, logger) {
       throw new Error('Unable to find local bin path for spec-cli');
     }
 
-    await spawn(cli, ['add-local', '--npmClient', npmClient, plugin], {
-      cwd: root,
-      stdio: 'inherit',
-    });
+    console.log('DONE!');
+    // await spawn(cli, ['add', '--local', plugin], {
+    // cwd: root,
+    // stdio: 'inherit',
+    // });
     return;
   }
 

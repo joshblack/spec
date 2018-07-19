@@ -1,27 +1,54 @@
 'use strict';
 
-module.exports = ({ Coordinator, api }) => {
+// const Config = require('@spec/cli-config');
+const {
+  getClient,
+  installDependencies,
+  linkDependencies,
+  linkDependency,
+} = require('@spec/cli-tools/npm');
+const fs = require('fs-extra');
+const path = require('path');
+
+module.exports = ({ api, env }) => {
   api.addCommand({
     name: 'add <plugin-name>',
     description: 'add a plugin to the project',
-    async action(name) {
-      Coordinator.add(name);
-      console.log('adding plugin...', name);
+    options: [
+      {
+        flags: '--link',
+        description: 'link a local plugin to the project [DEV ONLY]',
+      },
+    ],
+    async action(name, cmd) {
+      console.log(env);
+      // console.log('Add plugin:', name, 'with options:', cmd);
 
-      // Install locally as a dependency
-      // Add plugin to Coordinator
-    },
-  });
+      // const { link } = cmd;
+      // const npmClient = await getClient(cwd);
 
-  api.addCommand({
-    name: 'add-local <plugin-name>',
-    description: 'add a local plugin to the project [DEV ONLY]',
-    async action(name) {
-      Coordinator.addLocal(name);
-      console.log('adding local plugin...', name);
+      // const config = new Config(cwd);
 
-      // Install locally as a dependency
-      // Add plugin to Coordinator
+      // await config.find();
+
+      // return;
+
+      // if (link) {
+      // const pkgName = name.includes('@') ? name.split('/')[1] : name;
+      // const pluginPath = path.resolve(__dirname, '../', pkgName);
+      // if (await fs.pathExists(pluginPath)) {
+      // await linkDependency(npmClient, pluginPath);
+      // }
+
+      // await linkDependencies(npmClient, [name], { cwd });
+      // console.log('hi');
+
+      // // await Coordinator.install(name);
+
+      // return;
+      // }
+
+      // throw new Error('Not implemented :(');
     },
   });
 };

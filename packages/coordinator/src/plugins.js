@@ -1,6 +1,13 @@
 'use strict';
 
-const { installDependencies } = require('@spec/cli-tools/npm');
+const {
+  getClient,
+  linkDependency,
+  linkDependencies,
+  installDependencies,
+} = require('@spec/cli-tools/npm');
+const fs = require('fs-extra');
+const path = require('path');
 const Joi = require('joi');
 
 const schema = {
@@ -54,9 +61,22 @@ async function loadPlugin(descriptor, resolve, logger) {
   };
 }
 
-async function linkPlugin(npmClient, logger) {}
+async function linkPlugin(name, cwd, logger) {
+  logger.info(`Linking plugin: ${name}`);
+
+  const npmClient = await getClient(cwd);
+  const pkgName = name.includes('@') ? name.split('/')[1] : name;
+  const pluginPath = path.resolve(__dirname, '../../', pkgName);
+
+  if (await fs.pathExists(pluginPath)) {
+    await linkDependency(npmClient, pluginPath);
+  }
+
+  await linkDependencies(npmClient, [name], { cwd });
+}
 
 module.exports = {
   loadPlugins,
   loadPlugin,
+  linkPlugin,
 };

@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('fs-extra');
+const path = require('path');
 const spawn = require('./spawn');
 
 function getInstallCommand(npmClient) {
@@ -116,6 +118,30 @@ function init(npmClient, { cwd, stdio = 'inherit', ...rest }) {
   });
 }
 
+async function getClient(root) {
+  const yarnLockfile = path.join(root, 'yarn.lock');
+  if (await fs.pathExists(yarnLockfile)) {
+    return 'yarn';
+  }
+
+  const npmLockfile = path.join(root, 'package-lock.json');
+  if (await fs.pathExists(npmLockfile)) {
+    return 'npm';
+  }
+
+  try {
+    await spawn('yarn', ['--version'], { cwd: root });
+    return 'yarn';
+  } catch (error) {}
+
+  try {
+    await spawn('npm', ['--version'], { cwd: root });
+    return 'npm';
+  } catch (error) {}
+
+  throw new Error(`Cannot infer npm client from: ${root}`);
+}
+
 module.exports = {
   init,
   install,
@@ -127,4 +153,5 @@ module.exports = {
   getSaveFlag,
   getRunCommand,
   getGlobalBinPath,
+  getClient,
 };

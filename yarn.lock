@@ -1389,7 +1389,7 @@ assign-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
 
-ast-types@0.x.x:
+ast-types@0.11.5, ast-types@0.x.x:
   version "0.11.5"
   resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.11.5.tgz#9890825d660c03c28339f315e9fa0a360e31ec28"
 
@@ -3417,6 +3417,10 @@ esprima@^2.6.0:
 esprima@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
+
+esprima@~4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
 
 esrecurse@^4.1.0:
   version "4.2.0"
@@ -7595,7 +7599,7 @@ pretty-format@^23.2.0:
     ansi-regex "^3.0.0"
     ansi-styles "^3.2.0"
 
-private@^0.1.6, private@^0.1.7:
+private@^0.1.6, private@^0.1.7, private@~0.1.5:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
 
@@ -8022,6 +8026,15 @@ realpath-native@^1.0.0:
   resolved "https://registry.yarnpkg.com/realpath-native/-/realpath-native-1.0.0.tgz#7885721a83b43bd5327609f0ddecb2482305fdf0"
   dependencies:
     util.promisify "^1.0.0"
+
+recast@^0.15.2:
+  version "0.15.2"
+  resolved "https://registry.yarnpkg.com/recast/-/recast-0.15.2.tgz#bcaebf7cdb0728e38ec6d1438e7fb3594505cee3"
+  dependencies:
+    ast-types "0.11.5"
+    esprima "~4.0.0"
+    private "~0.1.5"
+    source-map "~0.6.1"
 
 redent@^1.0.0:
   version "1.0.0"
