@@ -1,19 +1,19 @@
-# `@spec/cli-plugin-env`
+# `@spec/cli-plugin-develop`
 
-> Env plugin for `@spec/cli`
+> Develop plugin for `@spec/cli`
 
 ## Getting Started
 
 Run the following command using [npm](https://www.npmjs.com/):
 
 ```bash
-npm install -S @spec/cli-plugin-env
+npm install -S @spec/cli-plugin-develop
 ```
 
 If you prefer [Yarn](https://yarnpkg.com/en/), use the following command instead:
 
 ```bash
-yarn add @spec/cli-plugin-env
+yarn add @spec/cli-plugin-develop
 ```
 
 ## 🤲 Contributing
