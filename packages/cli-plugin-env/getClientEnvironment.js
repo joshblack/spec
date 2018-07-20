@@ -1,12 +1,12 @@
 'use strict';
 
 function getClientEnvironment({ publicUrl = '/', packageNames = [] }) {
-  const NODE_ENV = process.env.NODE_ENV || 'development';
-  // if (!NODE_ENV) {
-  // throw new Error(
-  // 'The NODE_ENV environment variable is required but was not specified.'
-  // );
-  // }
+  const NODE_ENV = process.env.NODE_ENV;
+  if (!NODE_ENV) {
+    throw new Error(
+      'The NODE_ENV environment variable is required but was not specified.'
+    );
+  }
 
   // Grab NODE_ENV and *_UI_* environment variables and prepare them to be
   // injected into the application via DefinePlugin in Webpack configuration.

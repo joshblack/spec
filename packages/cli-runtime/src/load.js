@@ -5,6 +5,7 @@ const defaultResolve = require('./resolve');
 const { defaultValidateConfig } = require('./validation');
 const PluginAPI = require('./PluginAPI');
 const DeferredWriteStore = require('./DeferredWriteStore');
+const commands = require('./commands');
 
 /**
  * type Result = {
@@ -55,11 +56,15 @@ async function load(
     config.plugins.map(descriptor => loadPlugin(descriptor, resolve))
   );
   const store = new DeferredWriteStore();
-  const api = new PluginAPI({ store });
+  const env = {
+    cwd,
+  };
+  const api = new PluginAPI({
+    store,
+    defaultCommands: commands.map(command => command({ env, store })),
+  });
 
   for (const { name, plugin, options } of plugins) {
-    console.log('Initializing plugin:', name);
-
     await plugin({
       api,
       options,

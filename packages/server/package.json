@@ -2,6 +2,9 @@
   "name": "@spec/server",
   "version": "1.0.0",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@spec/cli-runtime": "1.0.0",
     "body-parser": "^1.17.2",

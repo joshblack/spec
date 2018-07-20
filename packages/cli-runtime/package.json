@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
+    "@spec/cli-tools": "1.0.0",
     "cosmiconfig": "^5.0.5",
     "fs-extra": "^7.0.0",
     "joi": "^13.4.0",
