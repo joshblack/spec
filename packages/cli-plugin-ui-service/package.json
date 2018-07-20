@@ -1,7 +1,7 @@
 {
   "name": "@spec/cli-plugin-ui-service",
   "private": true,
-  "version": "1.0.0",
+  "version": "3.0.0-alpha.1",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {

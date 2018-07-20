@@ -1,14 +1,14 @@
 {
   "name": "@spec/cli-plugin-git",
   "private": true,
-  "version": "1.0.0",
+  "version": "3.0.0-alpha.1",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@spec/cli-tools": "1.0.0",
+    "@spec/cli-tools": "3.0.0-alpha.1",
     "fs-extra": "^7.0.0"
   }
 }
