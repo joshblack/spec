@@ -20,7 +20,7 @@ const createResponse = require('./createResponse');
  * OpenGraph, title, site_name, image, description, url, ...
  */
 module.exports = ({
-  getTitle = () => 'Carbonated',
+  getTitle = () => 'UI SDK',
   addToHead = () => '',
   getMetaTags,
 } = {}) => (server, context) => {

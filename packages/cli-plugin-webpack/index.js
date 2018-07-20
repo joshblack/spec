@@ -9,7 +9,7 @@ module.exports = ({ api }) => {
 
     const autoprefixer = require('autoprefixer');
     const paths = await api.read('paths');
-    const getClientEnvironment = await api.read('env');
+    const env = await api.read('env');
 
     // Webpack uses `publicPath` to determine where the app is being served from.
     // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -21,7 +21,6 @@ module.exports = ({ api }) => {
     // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
     // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
     const publicUrl = '';
-    const env = getClientEnvironment(publicUrl);
 
     // This is the development configuration.
     // It is focused on developer experience and fast rebuilds.
@@ -247,7 +246,7 @@ module.exports = ({ api }) => {
     process.env.NODE_ENV = 'production';
 
     const paths = await api.read('paths');
-    const getClientEnvironment = await api.read('env');
+    const env = await api.read('env');
 
     const autoprefixer = require('autoprefixer');
     const path = require('path');
@@ -267,7 +266,6 @@ module.exports = ({ api }) => {
     // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
     const publicUrl = publicPath.slice(0, -1);
     // Get environment variables to inject into our app.
-    const env = getClientEnvironment(publicUrl);
 
     // Assert this just to be safe.
     // Development builds of React are slow and not intended for production.

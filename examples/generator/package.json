@@ -4,6 +4,31 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "cli": "../../packages/cli/bin/index.js"
+    "spec": "../../packages/cli/bin/index.js",
+    "format": "/Users/joshuablack/oss/spec/packages/cli/bin/index.js format",
+    "format:diff": "/Users/joshuablack/oss/spec/packages/cli/bin/index.js format:diff",
+    "develop": "/Users/joshuablack/oss/spec/packages/cli/bin/index.js develop",
+    "build": "/Users/joshuablack/oss/spec/packages/cli/bin/index.js build",
+    "start": "cross-env NODE_ENV=production node src/server/index.js"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-hot-loader": "^4.3.3"
+  },
+  "spec": {
+    "plugins": [
+      "@spec/cli-plugin-env",
+      "@spec/cli-plugin-paths",
+      "@spec/cli-plugin-format",
+      "@spec/cli-plugin-webpack",
+      "@spec/cli-plugin-develop",
+      "@spec/cli-plugin-build",
+      "@spec/cli-plugin-ui-service"
+    ]
   }
 }

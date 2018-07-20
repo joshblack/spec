@@ -1,24 +1,17 @@
 'use strict';
 
+const { load } = require('@spec/cli-runtime');
 const { NODE_ENV } = require('config');
-
-let Coordinator;
-let webpack;
-
-if (NODE_ENV === 'development') {
-  Coordinator = require('@spec/coordinator').Coordinator;
-  webpack = require('webpack');
-}
+const webpack = require('webpack');
 
 module.exports = async server => {
   if (NODE_ENV !== 'development') {
     return server;
   }
 
-  await Coordinator.sync();
-
-  const config = await Coordinator.api.read('webpack.config.development');
-  const paths = await Coordinator.api.read('paths');
+  const { store } = await load();
+  const config = await store.read('webpack.config.development');
+  const paths = await store.read('paths');
   const compiler = webpack(config);
 
   server.use(

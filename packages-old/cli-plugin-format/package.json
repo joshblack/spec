@@ -1,0 +1,13 @@
+{
+  "name": "@spec/cli-plugin-format",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@spec/cli": "1.0.0",
+    "chalk": "^2.4.1",
+    "cross-spawn": "^6.0.5",
+    "npm-which": "^3.0.1",
+    "prettier": "^1.13.7"
+  }
+}

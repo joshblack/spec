@@ -6,15 +6,13 @@ const url = require('url');
 
 // Inspired by Facebook's Create Reac App:
 // https://github.com/facebook/create-react-app/blob/next/packages/react-scripts/config/paths.js
-module.exports = ({ api, cwd, options }) => {
+module.exports = ({ api, env, options }) => {
   api.extend('paths', () => {
     // Make sure any symlinks in the project folder are resolved:
     // https://github.com/facebookincubator/create-react-app/issues/637
-    const appDirectory = fs.realpathSync(cwd);
+    const appDirectory = fs.realpathSync(env.cwd);
     const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
-
     const envPublicUrl = process.env.PUBLIC_URL;
-
     function ensureSlash(path, needsSlash) {
       const hasSlash = path.endsWith('/');
       if (hasSlash && !needsSlash) {
@@ -25,11 +23,9 @@ module.exports = ({ api, cwd, options }) => {
         return path;
       }
     }
-
     const getPublicUrl = appPackageJson =>
       // eslint-disable-next-line import/no-dynamic-require
       envPublicUrl || require(appPackageJson).homepage;
-
     // We use `PUBLIC_URL` environment variable or "homepage" field to infer
     // "public path" at which the app is served.
     // Webpack needs to know it to put the right <script> hrefs into HTML even in
@@ -42,7 +38,6 @@ module.exports = ({ api, cwd, options }) => {
         envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
       return ensureSlash(servedUrl, true);
     }
-
     // config after eject: we're in ./config/
     return {
       appBuild: resolveApp('build'),

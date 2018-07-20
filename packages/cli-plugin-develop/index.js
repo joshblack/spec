@@ -34,4 +34,15 @@ module.exports = ({ api }) => {
       });
     },
   });
+
+  api.add(async ({ extendPackageJson }) => {
+    await extendPackageJson(({ cliPath, packageJson }) => {
+      return {
+        scripts: {
+          ...packageJson.scripts,
+          develop: `${cliPath} develop`,
+        },
+      };
+    });
+  });
 };

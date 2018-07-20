@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "@spec/coordinator": "1.0.0",
+    "@spec/cli-runtime": "1.0.0",
     "body-parser": "^1.17.2",
     "compression": "^1.7.0",
     "config": "^1.26.2",

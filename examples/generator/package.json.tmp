@@ -1,0 +1,24 @@
+{
+  "name": "example-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "spec": "../../packages/cli/bin/index.js",
+    "format": "/Users/joshuablack/oss/spec/packages/cli/bin/index.js format",
+    "format:diff": "/Users/joshuablack/oss/spec/packages/cli/bin/index.js format:diff",
+    "develop": "/Users/joshuablack/oss/spec/packages/cli/bin/index.js develop",
+    "build": "/Users/joshuablack/oss/spec/packages/cli/bin/index.js build"
+  },
+  "dependencies": {},
+  "spec": {
+    "plugins": [
+      "@spec/cli-plugin-env",
+      "@spec/cli-plugin-paths",
+      "@spec/cli-plugin-format",
+      "@spec/cli-plugin-webpack",
+      "@spec/cli-plugin-develop",
+      "@spec/cli-plugin-build"
+    ]
+  }
+}

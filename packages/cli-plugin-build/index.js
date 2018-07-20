@@ -39,6 +39,17 @@ module.exports = ({ api }) => {
       copyPublicFolder(paths);
     },
   });
+
+  api.add(async ({ extendPackageJson }) => {
+    await extendPackageJson(({ cliPath, packageJson }) => {
+      return {
+        scripts: {
+          ...packageJson.scripts,
+          build: `${cliPath} build`,
+        },
+      };
+    });
+  });
 };
 
 function printErrors(summary, errors) {

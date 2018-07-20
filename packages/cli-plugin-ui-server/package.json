@@ -1,9 +1,0 @@
-{
-  "name": "@spec/cli-plugin-ui-server",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "@spec/coordinator": "1.0.0"
-  }
-}

@@ -29,7 +29,7 @@ if (major < 8) {
   process.exit(1);
 }
 
-const main = require('../');
+const main = require('../src');
 
 main(process).catch(error => {
   console.error(error);

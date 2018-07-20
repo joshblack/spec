@@ -1,10 +1,11 @@
 'use strict';
 
 const chalk = require('chalk');
-const spawn = require('cross-spawn');
+const spawn = require('@spec/cli-tools/spawn');
 const npmWhich = require('npm-which');
 const util = require('util');
 
+const which = util.promisify(npmWhich(__dirname));
 const defaultOptions = {
   jsxBracketSameLine: true,
   printWidth: 80,
@@ -12,71 +13,59 @@ const defaultOptions = {
   trailingComma: 'es5',
 };
 
-const spawnAsync = (command, args, options) =>
-  new Promise((resolve, reject) => {
-    console.log(chalk.grey(`prettier ${args.join(' ')}`));
-
-    const child = spawn(command, args, options);
-    child.on('close', code => {
-      if (code !== 0) {
-        const error = new Error(
-          `Error running the command: ${command} ${args.join(' ')}`
-        );
-        reject(error);
-        return;
-      }
-      resolve();
-    });
-  });
-
-const which = util.promisify(npmWhich(__dirname));
-
-module.exports = ({ api, cwd, options }) => {
-  const prettierOptions = {
-    ...defaultOptions,
-    ...options,
-  };
-
+module.exports = ({ api, env }) => {
   api.addCommand({
     name: 'format',
-    description: 'format files in your codebase, powered by prettier',
+    description: 'format your files, powered by prettier',
     async action() {
       const args = [
-        ...formatOptions(prettierOptions),
+        ...formatOptions(defaultOptions),
         '--write',
         '**/*.{css,js,md,scss,ts}',
       ];
 
       const prettier = await which('prettier');
-      await spawnAsync(prettier, args, {
+
+      console.log(chalk.grey(`prettier ${args.join(' ')}`));
+
+      await spawn(prettier, args, {
         stdio: 'inherit',
-        cwd,
+        cwd: env.cwd,
       });
     },
   });
 
   api.addCommand({
     name: 'format:diff',
-    description:
-      'check if your files are formatted different than what prettier expects',
+    description: 'verify files have been formatted by prettier',
     async action() {
       const args = [
-        ...formatOptions(prettierOptions),
+        ...formatOptions(defaultOptions),
         '--list-different',
         '**/*.{css,js,md,scss,ts}',
       ];
 
       const prettier = await which('prettier');
 
-      try {
-        await spawnAsync(prettier, args, {
-          stdio: 'inherit',
-          cwd,
-        });
-      } catch (error) {
-        process.exit(1);
-      }
+      console.log(chalk.grey(`prettier ${args.join(' ')}`));
+
+      await spawn(prettier, args, {
+        stdio: 'inherit',
+        cwd: env.cwd,
+      });
     },
+  });
+
+  api.add(async ({ extendPackageJson }) => {
+    await extendPackageJson(({ cliPath, packageJson }) => {
+      return {
+        scripts: {
+          ...packageJson.scripts,
+          format: `${cliPath} format`,
+          'format:diff': `${cliPath} format:diff`,
+        },
+      };
+    });
   });
 };
 
