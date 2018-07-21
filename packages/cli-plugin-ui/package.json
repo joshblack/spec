@@ -6,6 +6,9 @@
   "scripts": {
     "cli": "spec"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@spec/cli": "3.0.0-alpha.2",
     "@spec/cli-plugin-build": "3.0.0-alpha.2",
