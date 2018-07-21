@@ -1,5 +1,6 @@
 'use strict';
 
+const { createLogger } = require('@spec/cli-logger');
 const { getClient } = require('@spec/cli-tools/npm');
 const addPlugin = require('@spec/cli-plugin-add');
 const createPlugin = require('@spec/cli-plugin-create');
@@ -9,6 +10,92 @@ const cosmiconfig = require('cosmiconfig');
 const { defaultValidateConfig } = require('./validation');
 const PluginAPI = require('./PluginAPI');
 const DeferredWriteStore = require('./DeferredWriteStore');
+
+const defaultPlugins = [
+  {
+    name: '@spec/cli-plugin-add',
+    options: {},
+    plugin: addPlugin,
+  },
+  {
+    name: '@spec/cli-plugin-create',
+    options: {},
+    plugin: createPlugin,
+  },
+  {
+    name: '@spec/cli-plugin-ui',
+    options: {},
+    plugin: uiPlugin,
+  },
+];
+const logger = createLogger('@spec/cli-runtime');
+
+async function load(
+  cwd = process.cwd(),
+  {
+    name = 'spec',
+    loader = defaultLoader,
+    validate = defaultValidateConfig,
+    resolve = defaultResolve,
+  } = {}
+) {
+  logger.trace('Loading runtime configuration');
+
+  const store = new DeferredWriteStore();
+  const api = new PluginAPI({
+    store,
+  });
+  const env = {
+    cwd,
+    npmClient: await getClient(cwd),
+  };
+
+  logger.trace('Loading default plugins');
+
+  await applyPlugins(defaultPlugins, api, env);
+
+  const result = await loader(name, cwd);
+  if (result === null) {
+    logger.debug(`No configuration found for the directory: ${cwd}`);
+    return {
+      name,
+      api,
+      store,
+    };
+  }
+
+  const { config, filepath, isEmpty } = result;
+  const { error } = validate(config);
+  if (error) {
+    logger.error(error);
+    throw error;
+  }
+
+  logger.trace('Loading plugins from configuration');
+
+  const plugins = await loadPlugins(config.plugins, resolve);
+
+  await applyPlugins(plugins, api, env);
+
+  return {
+    name,
+    filepath,
+    plugins,
+    api,
+    store,
+  };
+}
+
+async function applyPlugins(plugins, api, env) {
+  for (const { name, plugin, options } of plugins) {
+    logger.trace(`Applying plugin: ${name}`);
+    await plugin({
+      api,
+      options,
+      env,
+    });
+  }
+}
 
 /**
  * type Result = {
@@ -27,87 +114,6 @@ const DeferredWriteStore = require('./DeferredWriteStore');
  */
 function defaultLoader(name, cwd) {
   return cosmiconfig(name, { stopDir: cwd }).search();
-}
-
-async function load(
-  cwd = process.cwd(),
-  {
-    name = 'spec',
-    loader = defaultLoader,
-    validate = defaultValidateConfig,
-    resolve = defaultResolve,
-  } = {}
-) {
-  // console.log('Loading config');
-
-  const store = new DeferredWriteStore();
-  const api = new PluginAPI({
-    store,
-  });
-  const env = {
-    cwd,
-    npmClient: await getClient(cwd),
-  };
-  const defaultPlugins = [
-    {
-      name: '@spec/cli-plugin-add',
-      options: {},
-      plugin: addPlugin,
-    },
-    {
-      name: '@spec/cli-plugin-create',
-      options: {},
-      plugin: createPlugin,
-    },
-    {
-      name: '@spec/cli-plugin-ui',
-      options: {},
-      plugin: uiPlugin,
-    },
-  ];
-
-  await applyPlugins(defaultPlugins, api, env);
-
-  const result = await loader(name, cwd);
-  if (result === null) {
-    // console.log(`No configuration found for the directory: ${cwd}`);
-    return {
-      name,
-      api,
-      store,
-    };
-  }
-
-  const { config, filepath, isEmpty } = result;
-  const { error } = validate(config);
-  if (error) {
-    // console.log(error);
-    throw error;
-  }
-
-  console.log('Loading plugins');
-
-  const plugins = await loadPlugins(config.plugins, resolve);
-
-  await applyPlugins(plugins, api, env);
-
-  return {
-    name,
-    filepath,
-    plugins,
-    api,
-    store,
-  };
-}
-
-async function applyPlugins(plugins, api, env) {
-  for (const { name, plugin, options } of plugins) {
-    await plugin({
-      api,
-      options,
-      env,
-    });
-  }
 }
 
 module.exports = load;

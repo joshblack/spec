@@ -1,5 +1,5 @@
 FROM node:9.4
-MAINTAINER joshblack@us.ibm.com
+MAINTAINER josh@josh.black
 
 RUN mkdir -p /spec
 WORKDIR /spec

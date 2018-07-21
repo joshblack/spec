@@ -1,0 +1,9 @@
+{
+  "name": "@spec/cli-logger",
+  "version": "3.0.0-alpha.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "log4js": "^3.0.2"
+  }
+}

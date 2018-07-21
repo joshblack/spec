@@ -31,6 +31,9 @@ const middleware = [
         description: 'Prototype to demonstrate capabilities of the UI SDK',
       },
     }),
+    addToHead: () => `
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
+<style>body { font-family: 'IBM Plex Mono', monospace; }</style>`,
   }),
 
   // Error handling so we don't pollute the response with stack traces
