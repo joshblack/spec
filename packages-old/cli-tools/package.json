@@ -1,9 +1,0 @@
-{
-  "name": "@spec/cli-tools",
-  "version": "1.0.0",
-  "license": "MIT",
-  "dependencies": {
-    "cross-spawn": "^6.0.5",
-    "log4js": "^2.10.0"
-  }
-}
