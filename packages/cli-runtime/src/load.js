@@ -2,13 +2,12 @@
 
 const { getClient } = require('@spec/cli-tools/npm');
 const addPlugin = require('@spec/cli-plugin-add');
+const createPlugin = require('@spec/cli-plugin-create');
 const { loadPlugins, resolve: defaultResolve } = require('@spec/cli-plugins');
 const cosmiconfig = require('cosmiconfig');
-// const defaultResolve = require('./resolve');
 const { defaultValidateConfig } = require('./validation');
 const PluginAPI = require('./PluginAPI');
 const DeferredWriteStore = require('./DeferredWriteStore');
-const commands = require('./commands');
 
 /**
  * type Result = {
@@ -41,14 +40,27 @@ async function load(
   console.log('Loading config');
 
   const store = new DeferredWriteStore();
+  const api = new PluginAPI({
+    store,
+  });
   const env = {
     cwd,
     npmClient: await getClient(cwd),
   };
-  const api = new PluginAPI({
-    store,
-    defaultCommands: commands.map(command => command({ env, store })),
-  });
+  const defaultPlugins = [
+    {
+      name: '@spec/cli-plugin-add',
+      options: {},
+      plugin: addPlugin,
+    },
+    {
+      name: '@spec/cli-plugin-create',
+      options: {},
+      plugin: createPlugin,
+    },
+  ];
+
+  await applyPlugins(defaultPlugins, api, env);
 
   const result = await loader(name, cwd);
   if (result === null) {
@@ -68,26 +80,10 @@ async function load(
   }
 
   console.log('Loading plugins');
-  const defaultPlugins = [
-    {
-      name: '@spec/cli-plugin-add',
-      options: {},
-      plugin: addPlugin,
-    },
-  ];
 
   const plugins = await loadPlugins(config.plugins, resolve);
-  // const plugins = await Promise.all(
-  // config.plugins.map(descriptor => loadPlugin(descriptor, resolve))
-  // );
 
-  for (const { name, plugin, options } of defaultPlugins.concat(plugins)) {
-    await plugin({
-      api,
-      options,
-      env,
-    });
-  }
+  await applyPlugins(plugins, api, env);
 
   return {
     name,
@@ -98,19 +94,14 @@ async function load(
   };
 }
 
-// async function loadPlugin(descriptor, resolve) {
-// const config = Array.isArray(descriptor) ? descriptor : [descriptor];
-// const [name, options = {}] = config;
-
-// console.log('Loading plugin:', name);
-
-// const plugin = await resolve(name);
-
-// return {
-// name,
-// plugin,
-// options,
-// };
-// }
+async function applyPlugins(plugins, api, env) {
+  for (const { name, plugin, options } of plugins) {
+    await plugin({
+      api,
+      options,
+      env,
+    });
+  }
+}
 
 module.exports = load;
