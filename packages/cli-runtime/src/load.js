@@ -3,6 +3,7 @@
 const { getClient } = require('@spec/cli-tools/npm');
 const addPlugin = require('@spec/cli-plugin-add');
 const createPlugin = require('@spec/cli-plugin-create');
+const uiPlugin = require('@spec/cli-plugin-ui');
 const { loadPlugins, resolve: defaultResolve } = require('@spec/cli-plugins');
 const cosmiconfig = require('cosmiconfig');
 const { defaultValidateConfig } = require('./validation');
@@ -37,7 +38,7 @@ async function load(
     resolve = defaultResolve,
   } = {}
 ) {
-  console.log('Loading config');
+  // console.log('Loading config');
 
   const store = new DeferredWriteStore();
   const api = new PluginAPI({
@@ -58,13 +59,18 @@ async function load(
       options: {},
       plugin: createPlugin,
     },
+    {
+      name: '@spec/cli-plugin-ui',
+      options: {},
+      plugin: uiPlugin,
+    },
   ];
 
   await applyPlugins(defaultPlugins, api, env);
 
   const result = await loader(name, cwd);
   if (result === null) {
-    console.log(`No configuration found for the directory: ${cwd}`);
+    // console.log(`No configuration found for the directory: ${cwd}`);
     return {
       name,
       api,

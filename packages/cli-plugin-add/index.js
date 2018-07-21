@@ -55,12 +55,6 @@ module.exports = ({ api, env }) => {
 
       const spec = await which('spec');
       const plugin = await loadPlugin(name, defaultResolve);
-      // // const api = new PluginAPI({ store: api.store });
-      // const plugin = {
-      // name,
-      // options: {},
-      // plugin: await defaultResolve(name),
-      // };
       await plugin.plugin({
         api,
         options: plugin.options,
