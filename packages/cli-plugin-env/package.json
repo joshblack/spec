@@ -1,6 +1,6 @@
 {
   "name": "@spec/cli-plugin-env",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.3",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {

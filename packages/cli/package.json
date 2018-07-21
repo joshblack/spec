@@ -6,13 +6,13 @@
   "engines": {
     "node": ">=8"
   },
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.3",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@spec/cli-runtime": "3.0.0-alpha.2",
+    "@spec/cli-runtime": "3.0.0-alpha.3",
     "chalk": "^2.4.1",
     "commander": "^2.16.0"
   }

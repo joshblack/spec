@@ -1,14 +1,14 @@
 {
   "name": "@spec/cli-plugin-add",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.3",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@spec/cli-plugins": "3.0.0-alpha.2",
-    "@spec/cli-tools": "3.0.0-alpha.2",
+    "@spec/cli-plugins": "3.0.0-alpha.3",
+    "@spec/cli-tools": "3.0.0-alpha.3",
     "fs-extra": "^7.0.0",
     "npm-which": "^3.0.1"
   }
