@@ -1,19 +1,19 @@
 {
   "name": "@spec/cli-plugin-ui",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "cli": "spec"
   },
   "dependencies": {
-    "@spec/cli": "3.0.0-alpha.1",
-    "@spec/cli-plugin-build": "3.0.0-alpha.1",
-    "@spec/cli-plugin-develop": "3.0.0-alpha.1",
-    "@spec/cli-plugin-env": "3.0.0-alpha.1",
-    "@spec/cli-plugin-paths": "3.0.0-alpha.1",
-    "@spec/cli-plugin-webpack": "3.0.0-alpha.1",
-    "@spec/server": "3.0.0-alpha.1",
+    "@spec/cli": "3.0.0-alpha.2",
+    "@spec/cli-plugin-build": "3.0.0-alpha.2",
+    "@spec/cli-plugin-develop": "3.0.0-alpha.2",
+    "@spec/cli-plugin-env": "3.0.0-alpha.2",
+    "@spec/cli-plugin-paths": "3.0.0-alpha.2",
+    "@spec/cli-plugin-webpack": "3.0.0-alpha.2",
+    "@spec/server": "3.0.0-alpha.2",
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
     "apollo-link-http": "^1.5.4",

@@ -1,17 +1,17 @@
 {
   "name": "@spec/cli-runtime",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "main": "src/index.js",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@spec/cli-plugins": "3.0.0-alpha.1",
-    "@spec/cli-plugin-add": "3.0.0-alpha.1",
-    "@spec/cli-plugin-create": "3.0.0-alpha.1",
-    "@spec/cli-plugin-ui": "3.0.0-alpha.1",
-    "@spec/cli-tools": "3.0.0-alpha.1",
+    "@spec/cli-plugin-add": "3.0.0-alpha.2",
+    "@spec/cli-plugin-create": "3.0.0-alpha.2",
+    "@spec/cli-plugin-ui": "3.0.0-alpha.2",
+    "@spec/cli-plugins": "3.0.0-alpha.2",
+    "@spec/cli-tools": "3.0.0-alpha.2",
     "cosmiconfig": "^5.0.5",
     "joi": "^13.4.0",
     "lodash.get": "^4.4.2",
