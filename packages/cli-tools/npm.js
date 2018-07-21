@@ -142,6 +142,20 @@ async function getClient(root) {
   throw new Error(`Cannot infer npm client from: ${root}`);
 }
 
+function setupPackageJson(cwd) {
+  const localPackageJsonPath = path.join(cwd, 'package.json');
+  return {
+    read() {
+      return fs.readJson(localPackageJsonPath);
+    },
+    write(packageJson) {
+      return fs.writeJson(localPackageJsonPath, packageJson, {
+        spaces: 2,
+      });
+    },
+  };
+}
+
 module.exports = {
   init,
   install,
@@ -154,4 +168,5 @@ module.exports = {
   getRunCommand,
   getGlobalBinPath,
   getClient,
+  setupPackageJson,
 };

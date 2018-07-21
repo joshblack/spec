@@ -5,11 +5,16 @@ const {
   installDependencies,
   installDevDependencies,
   linkDependencies,
+  setupPackageJson,
 } = require('@spec/cli-tools/npm');
 const fs = require('fs-extra');
 const path = require('path');
+const npmWhich = require('npm-which')(__dirname);
+const util = require('util');
 const PluginAPI = require('../PluginAPI');
 const defaultResolve = require('../resolve');
+
+const which = util.promisify(npmWhich);
 
 module.exports = ({ env, store }) => ({
   name: 'add <plugin-name>',
@@ -20,138 +25,135 @@ module.exports = ({ env, store }) => ({
       description: 'link a local plugin to the project [DEV ONLY]',
     },
   ],
-  async action(name, cmd) {
-    console.log('Add plugin:', name, 'with options:', cmd);
+  async action(packageName, cmd) {
+    console.log('Add plugin:', packageName, 'with options:', cmd);
 
-    // TODO: should we derive t his from the store value for paths?
-    const localPackageJsonPath = path.join(env.cwd, 'package.json');
-    const getPackageJson = () => {
-      return fs.readJson(localPackageJsonPath);
-    };
-    const writePackageJson = packageJson => {
-      return fs.writeJson(localPackageJsonPath, packageJson, {
-        spaces: 2,
-      });
-    };
-
-    const npmClient = await getClient(env.cwd);
-    const packageJson = await getPackageJson();
+    const name = removeVersionFromName(packageName);
+    const { cwd, npmClient } = env;
+    const { read, write } = setupPackageJson(env.cwd);
+    const packageJson = await read();
 
     // TODO add support for ['plugin', {}] variant
     if (packageJson.spec.plugins.indexOf(name) !== -1) {
-      throw new Error('plugin already exists');
+      throw new Error(
+        `The plugin ${name} has already been added to the project`
+      );
     }
 
     packageJson.spec.plugins.push(name);
-    await writePackageJson(packageJson);
+    await write(packageJson);
 
     if (cmd.link) {
       await linkDependencies(npmClient, [name], {
         cwd: env.cwd,
       });
-      const api = new PluginAPI({ store });
-      const plugin = {
-        name,
-        options: {},
-        plugin: await defaultResolve(name),
-      };
-      await plugin.plugin({
-        api,
-        options: plugin.options,
-        env,
+    } else {
+      await installDependencies(npmClient, [packageName], {
+        cwd: env.cwd,
       });
-
-      for (const thunk of api.thunks.add) {
-        await thunk({
-          async addDependencies(dependencies) {
-            const deps = dependencies
-              .filter(({ type, useLink }) => type === 'dependency' && !useLink)
-              .reduce((acc, dependency) => {
-                return acc.concat(dependency.pkg);
-              }, []);
-
-            if (deps.length > 0) {
-              await installDependencies(npmClient, deps, {
-                cwd: env.cwd,
-              });
-            }
-
-            const links = dependencies
-              .filter(({ useLink }) => useLink)
-              .reduce((acc, dependency) => {
-                return acc.concat(dependency.pkg);
-              }, []);
-
-            if (links.length > 0) {
-              await linkDependencies(npmClient, links, {
-                cwd: env.cwd,
-              });
-            }
-
-            const devDependencies = dependencies
-              .filter(
-                ({ type, useLink }) => type === 'devDependency' && !useLink
-              )
-              .reduce((acc, dependency) => {
-                return acc.concat(dependency.pkg);
-              }, []);
-
-            if (devDependencies.length > 0) {
-              await installDevDependencies(npmClient, devDependencies, {
-                cwd: env.cwd,
-              });
-            }
-          },
-
-          addPlugins(plugins) {
-            const { spec } = packageJson;
-            const installedPlugins = spec.plugins.filter(descriptor => {
-              if (Array.isArray(descriptor)) {
-                return descriptor[0];
-              }
-              return descriptor;
-            });
-            const pluginsToAdd = plugins.filter(plugin => {
-              return installedPlugins.indexOf(plugin) === -1;
-            });
-            const nextPackageJson = Object.assign({}, packageJson);
-            nextPackageJson.spec = {
-              plugins: [...nextPackageJson.spec.plugins, ...pluginsToAdd],
-            };
-
-            return fs.writeJson(localPackageJsonPath, nextPackageJson, {
-              spaces: 2,
-            });
-          },
-
-          copy(filepaths) {
-            console.log('Copying:', filepaths, 'to:', env.cwd);
-            return Promise.all(
-              filepaths.map(filepath => fs.copy(filepath, env.cwd))
-            );
-          },
-
-          async extendPackageJson(updater) {
-            const packageJson = await fs.readJson(localPackageJsonPath);
-            const file = Object.assign(
-              {},
-              packageJson,
-              updater({
-                npmClient,
-                cliPath: path.resolve(__dirname, '../bin/index.js'),
-                packageJson,
-              })
-            );
-
-            await fs.writeJson(localPackageJsonPath, file, {
-              spaces: 2,
-            });
-          },
-        });
-      }
-      return;
     }
 
-    throw new Error('Not implemented');
+    const spec = await which('spec');
+    const api = new PluginAPI({ store });
+    const plugin = {
+      name,
+      options: {},
+      plugin: await defaultResolve(name),
+    };
+    await plugin.plugin({
+      api,
+      options: plugin.options,
+      env,
+    });
+
+    const add = {
+      copy: copy(cwd),
+      extendPackageJson: extendPackageJson(read, write, npmClient, spec),
+      installDependencies: createInstaller(installDependencies, npmClient, cwd),
+      installDevDependencies: createInstaller(
+        installDevDependencies,
+        npmClient,
+        cwd
+      ),
+      linkDependencies: createInstaller(
+        cmd.link ? linkDependencies : installDependencies,
+        npmClient,
+        cwd
+      ),
+    };
+
+    for (const thunk of api.thunks.add) {
+      await thunk(add);
+    }
   },
 });
+
+function createInstaller(install, npmClient, cwd) {
+  return dependencies => {
+    const args = dependencies.map(dependency => {
+      if (typeof dependency === 'string') {
+        return dependency;
+      }
+      return `${dependency.name}@${dependency.version}`;
+    });
+    return install(npmClient, args, {
+      cwd,
+    });
+  };
+}
+
+function copy(root) {
+  return async files => {
+    console.log('Copying:', files, 'to:', root);
+    return Promise.all(files.map(filepath => fs.copy(filepath, root)));
+  };
+}
+
+function extendPackageJson(read, write, npmClient, cliPath) {
+  return async updater => {
+    const remotePackageJson = await read();
+    const packageJson = {
+      ...remotePackageJson,
+      ...updater({
+        npmClient,
+        cliPath,
+        packageJson: remotePackageJson,
+      }),
+    };
+
+    if (packageJson.scripts) {
+      packageJson.scripts = alphabetize(packageJson.scripts);
+    }
+
+    await write(packageJson);
+  };
+}
+
+function alphabetize(object) {
+  return Object.keys(object)
+    .sort()
+    .reduce((acc, key) => {
+      const value = object[key];
+      return {
+        ...acc,
+        [key]: typeof value === 'object' ? alphabetize(object) : value,
+      };
+    }, {});
+}
+
+function removeVersionFromName(name) {
+  // Scoped package
+  if (name[0] === '@') {
+    return (
+      '@' +
+      name
+        .split('@')
+        .slice(0, 2)
+        .join('')
+    );
+  }
+  return name
+    .split('@')
+    .slice(0, 1)
+    .join('');
+}

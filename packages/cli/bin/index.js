@@ -10,7 +10,6 @@
 // terminate the Node.js process with a non-zero exit code.
 process.on('unhandledRejection', err => {
   console.error(err);
-  throw err;
 });
 
 var chalk = require('chalk');

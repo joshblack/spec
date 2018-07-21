@@ -3,54 +3,36 @@
 const path = require('path');
 
 module.exports = ({ api }) => {
-  api.add(async ({ addDependencies, addPlugins, copy, extendPackageJson }) => {
-    console.log('Adding files from `@spec/cli-plugin-service`');
+  api.add(
+    async ({
+      copy,
+      extendPackageJson,
+      installDependencies,
+      linkDependencies,
+    }) => {
+      console.log('Adding files from `@spec/cli-plugin-service`');
 
-    await copy([path.join(__dirname, './files')]);
+      await copy([path.join(__dirname, './files')]);
 
-    await addDependencies([
-      {
-        pkg: '@spec/server',
-        type: 'dependency',
-        useLink: true,
-      },
-      {
-        pkg: 'cross-env',
-        type: 'dependency',
-      },
-      {
-        pkg: 'dotenv',
-        type: 'dependency',
-      },
-      {
-        pkg: 'express',
-        type: 'dependency',
-      },
-      {
-        pkg: 'prop-types',
-        type: 'dependency',
-      },
-      {
-        pkg: 'react',
-        type: 'dependency',
-      },
-      {
-        pkg: 'react-dom',
-        type: 'dependency',
-      },
-      {
-        pkg: 'react-hot-loader',
-        type: 'dependency',
-      },
-    ]);
+      await linkDependencies(['@spec/server']);
+      await installDependencies([
+        'cross-env',
+        'dot-env',
+        'express',
+        'prop-types',
+        'react',
+        'react-dom',
+        'react-hot-loader',
+      ]);
 
-    await extendPackageJson(({ cliPath, npmClient, packageJson }) => {
-      return {
-        scripts: {
-          ...packageJson.scripts,
-          start: 'cross-env NODE_ENV=production node src/server/index.js',
-        },
-      };
-    });
-  });
+      await extendPackageJson(({ cliPath, npmClient, packageJson }) => {
+        return {
+          scripts: {
+            ...packageJson.scripts,
+            start: 'cross-env NODE_ENV=production node src/server/index.js',
+          },
+        };
+      });
+    }
+  );
 };
