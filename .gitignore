@@ -4,7 +4,7 @@ lib
 dist
 
 # Used for internal testing
-tmp
+test
 
 # Config files
 .npmrc
