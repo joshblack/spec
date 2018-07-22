@@ -14,7 +14,12 @@ module.exports = ({ api }) => {
 
       await copy([path.join(__dirname, './files')]);
 
-      await linkDependencies(['@spec/server']);
+      await linkDependencies([
+        {
+          name: '@spec/server',
+          version: 'next',
+        },
+      ]);
       await installDependencies([
         'cross-env',
         'dot-env',

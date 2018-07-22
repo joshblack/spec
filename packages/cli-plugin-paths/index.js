@@ -35,7 +35,7 @@ module.exports = ({ api, env, options }) => {
     function getServedPath(appPackageJson) {
       const publicUrl = getPublicUrl(appPackageJson);
       const servedUrl =
-        envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
+        envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '');
       return ensureSlash(servedUrl, true);
     }
     // config after eject: we're in ./config/

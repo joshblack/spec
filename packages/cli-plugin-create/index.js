@@ -111,14 +111,8 @@ module.exports = ({ api, env }) => {
       }
 
       const spec = await which('spec', { cwd: root });
-      const plugins = answers.plugins.map(plugin => {
-        if (cmd.link) {
-          return plugin.replace(/\@next/, '');
-        }
-        return plugin;
-      });
 
-      for (const plugin of plugins) {
+      for (const plugin of answers.plugins) {
         const args = ['add', plugin, link && '--link'].filter(Boolean);
         await spawn(spec, args, {
           cwd: root,

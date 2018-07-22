@@ -1,19 +1,19 @@
-# `@spec/cli-tools`
+# `@spec/npm`
 
-> Tools for building `@spec/cli`
+> NPM-related utilties used in `@spec/cli`
 
 ## Getting Started
 
 Run the following command using [npm](https://www.npmjs.com/):
 
 ```bash
-npm install -S @spec/cli-tools
+npm install -S @spec/npm
 ```
 
 If you prefer [Yarn](https://yarnpkg.com/en/), use the following command instead:
 
 ```bash
-yarn add @spec/cli-tools
+yarn add @spec/npm
 ```
 
 ## 🤲 Contributing
