@@ -4,7 +4,6 @@ const { createLogger } = require('@spec/cli-logger');
 const { getClient } = require('@spec/cli-tools/npm');
 const addPlugin = require('@spec/cli-plugin-add');
 const createPlugin = require('@spec/cli-plugin-create');
-const uiPlugin = require('@spec/cli-plugin-ui');
 const { loadPlugins, resolve: defaultResolve } = require('@spec/cli-plugins');
 const cosmiconfig = require('cosmiconfig');
 const { defaultValidateConfig } = require('./validation');
@@ -21,11 +20,6 @@ const defaultPlugins = [
     name: '@spec/cli-plugin-create',
     options: {},
     plugin: createPlugin,
-  },
-  {
-    name: '@spec/cli-plugin-ui',
-    options: {},
-    plugin: uiPlugin,
   },
 ];
 const logger = createLogger('@spec/cli-runtime');
