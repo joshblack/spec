@@ -6,15 +6,20 @@ const Joi = require('joi');
 // will validate the situations that we're looking for.
 const configSchema = Joi.object()
   .keys({
-    plugins: Joi.array()
-      .items(
-        Joi.string(),
-        Joi.array()
-          .min(1)
-          .max(2)
-          .ordered(Joi.string().required(), Joi.object())
-      )
-      .required(),
+    presets: Joi.array().items(
+      Joi.string(),
+      Joi.array()
+        .min(1)
+        .max(2)
+        .ordered(Joi.string().required(), Joi.object())
+    ),
+    plugins: Joi.array().items(
+      Joi.string(),
+      Joi.array()
+        .min(1)
+        .max(2)
+        .ordered(Joi.string().required(), Joi.object())
+    ),
   })
   .required();
 

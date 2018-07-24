@@ -2,20 +2,28 @@
 
 const path = require('path');
 
-/**
- * @param {string} string The path to resolve
- * @returns {Function | Object} The module that is required
- */
-async function resolve(string) {
-  if (isPathString(string)) {
-    const source = path.resolve(string);
-    return require(source);
+function resolve(descriptor) {
+  if (isPathString(descriptor)) {
+    const source = path.resolve(descriptor);
+    return safeRequire(source);
   }
-  return require(string);
+  if (typeof descriptor === 'string') {
+    return safeRequire(descriptor);
+  }
+  // Fall-through case is if we have already been provided the module
+  return { module: descriptor };
 }
 
 function isPathString(string) {
   return string[0] === '.' || string[0] === '/';
+}
+
+function safeRequire(source) {
+  try {
+    return { module: require(source) };
+  } catch (error) {
+    return { error };
+  }
 }
 
 module.exports = resolve;

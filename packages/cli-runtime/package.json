@@ -9,6 +9,8 @@
   "dependencies": {
     "@spec/cli-plugin-add": "3.0.0-alpha.5",
     "@spec/cli-plugin-create": "3.0.0-alpha.5",
+    "@spec/cli-plugin-env": "3.0.0-alpha.5",
+    "@spec/cli-plugin-paths": "3.0.0-alpha.5",
     "@spec/cli-plugins": "3.0.0-alpha.5",
     "@spec/cli-tools": "3.0.0-alpha.5",
     "cosmiconfig": "^5.0.5",

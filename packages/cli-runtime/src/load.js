@@ -4,7 +4,12 @@ const { createLogger } = require('@spec/cli-logger');
 const { getClient } = require('@spec/cli-tools/npm');
 const addPlugin = require('@spec/cli-plugin-add');
 const createPlugin = require('@spec/cli-plugin-create');
-const { loadPlugins, resolve: defaultResolve } = require('@spec/cli-plugins');
+const {
+  loadConfig,
+  loadPresets,
+  loadPlugins,
+  resolve: defaultResolve,
+} = require('@spec/cli-plugins');
 const cosmiconfig = require('cosmiconfig');
 const { defaultValidateConfig } = require('./validation');
 const PluginAPI = require('./PluginAPI');
@@ -20,6 +25,16 @@ const defaultPlugins = [
     name: '@spec/cli-plugin-create',
     options: {},
     plugin: createPlugin,
+  },
+  {
+    name: '@spec/cli-plugin-env',
+    options: {},
+    plugin: require('@spec/cli-plugin-env'),
+  },
+  {
+    name: '@spec/cli-plugin-paths',
+    options: {},
+    plugin: require('@spec/cli-plugin-paths'),
   },
 ];
 const logger = createLogger('@spec/cli-runtime');
@@ -58,8 +73,8 @@ async function load(
     };
   }
 
-  const { config, filepath, isEmpty } = result;
-  const { error } = validate(config);
+  const { config: rawConfig, filepath, isEmpty } = result;
+  const { error } = validate(rawConfig);
   if (error) {
     logger.error(error);
     throw error;
@@ -67,16 +82,34 @@ async function load(
 
   logger.trace('Loading plugins from configuration');
 
-  const plugins = await loadPlugins(config.plugins, resolve);
-
-  await applyPlugins(plugins, api, env);
+  const plugins = await loadConfig(normalize(rawConfig));
+  // console.log(plugins)
 
   return {
     name,
     filepath,
-    plugins,
     api,
     store,
+  };
+
+  // const plugins = await loadPlugins(config.plugins, resolve);
+
+  // await applyPlugins(plugins, api, env);
+
+  // return {
+  // name,
+  // filepath,
+  // plugins,
+  // api,
+  // store,
+  // };
+}
+
+function normalize(config) {
+  return {
+    presets: [],
+    plugins: [],
+    ...config,
   };
 }
 

@@ -1,0 +1,12 @@
+{
+  "name": "presets",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "cli": "../../packages/cli/bin/index.js"
+  },
+  "spec": {
+    "presets": ["@spec/cli-preset-ui-service"]
+  }
+}

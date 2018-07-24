@@ -12,11 +12,11 @@ function addCommandToProgram(program, command) {
     cliCommand.option(...args);
   }
 
-  cliCommand.action((...args) => {
+  cliCommand.action(async (...args) => {
     const commandArgs = args.slice(args, args.length - 1);
     const command = args[args.length - 1];
     try {
-      return action(...commandArgs, cleanArgs(command));
+      await action(...commandArgs, cleanArgs(command));
     } catch (error) {
       console.error(error);
       process.exit(1);
